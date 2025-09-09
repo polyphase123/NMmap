@@ -14,16 +14,17 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f9fafb; /* Lighter gray background for depth */
+            background-color: #f9fafb;
         }
         
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #e5e7eb; }
         ::-webkit-scrollbar-thumb { background: #9ca3af; border-radius: 10px; }
 
-        .chart-container { position: relative; height: 300px; width: 100%; }
-        #map { height: 400px; border-radius: 1rem; z-index: 10; }
+        .chart-container { position: relative; height: 250px; width: 100%; }
+        #map { border-radius: 1rem; z-index: 10; }
         .tab-active { background-color: #3b82f6; color: #ffffff; }
+        .selector-tab-active { background-color: #ffffff; color: #3b82f6; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
         
         .modal-overlay { transition: opacity 0.3s ease-in-out; }
         .modal-content { transition: transform 0.3s ease-in-out; }
@@ -74,62 +75,48 @@
             <!-- Top KPI Cards -->
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
                  <div class="bg-white p-6 rounded-2xl shadow-lg border border-gray-200"><div class="flex items-center space-x-4"><div class="bg-indigo-500/10 p-3 rounded-full"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-indigo-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" /></svg></div><div><p class="text-gray-500 text-sm font-medium">Participating DUs</p><p class="text-2xl font-bold text-gray-900" id="totalDUs"></p></div></div></div>
-                 <div class="bg-white p-6 rounded-2xl shadow-lg border border-gray-200"><div class="flex items-center space-x-4"><div class="bg-blue-500/10 p-3 rounded-full"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg></div><div><p class="text-gray-500 text-sm font-medium">Total Qualified End-Users</p><p class="text-2xl font-bold text-gray-900" id="totalUsers"></p></div></div></div>
+                 <div class="bg-white p-6 rounded-2xl shadow-lg border border-gray-200"><div class="flex items-center space-x-4"><div class="bg-blue-500/10 p-3 rounded-full"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg></div><div><p class="text-gray-500 text-sm font-medium">Total QEs</p><p class="text-2xl font-bold text-gray-900" id="totalUsers"></p></div></div></div>
                 <div class="bg-white p-6 rounded-2xl shadow-lg border border-gray-200"><div class="flex items-center space-x-4"><div class="bg-green-500/10 p-3 rounded-full"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg></div><div><p class="text-gray-500 text-sm font-medium">Total Capacity (kWp)</p><p class="text-2xl font-bold text-gray-900" id="totalCapacity"></p></div></div></div>
-                <div class="bg-white p-6 rounded-2xl shadow-lg border border-gray-200"><div class="flex items-center space-x-4"><div class="bg-yellow-500/10 p-3 rounded-full"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" /></svg></div><div><p class="text-gray-500 text-sm font-medium">Avg. Capacity / User (kWp)</p><p class="text-2xl font-bold text-gray-900" id="avgCapPerUser"></p></div></div></div>
+                <div class="bg-white p-6 rounded-2xl shadow-lg border border-gray-200"><div class="flex items-center space-x-4"><div class="bg-yellow-500/10 p-3 rounded-full"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" /></svg></div><div><p class="text-gray-500 text-sm font-medium">Avg. Cap / User (kWp)</p><p class="text-2xl font-bold text-gray-900" id="avgCapPerUser"></p></div></div></div>
                 <div class="bg-white p-6 rounded-2xl shadow-lg border border-gray-200"><div class="flex items-center space-x-4"><div class="bg-purple-500/10 p-3 rounded-full"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-purple-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" /></svg></div><div><p class="text-gray-500 text-sm font-medium">Avg. Users / DU</p><p class="text-2xl font-bold text-gray-900" id="avgUsersPerDU"></p></div></div></div>
             </div>
 
             <!-- Main content grid -->
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 print-container">
-                <!-- Left Column -->
-                <div class="space-y-6">
-                    <div class="bg-white p-6 rounded-2xl shadow-lg border border-gray-200">
-                        <h2 class="text-xl font-semibold mb-4 text-gray-900">Distribution Utility Locations</h2>
-                        <div id="map"></div>
-                    </div>
-                    <div class="bg-white p-6 rounded-2xl shadow-lg border border-gray-200">
-                        <h2 class="text-xl font-semibold mb-4 text-gray-900">Grid Averages</h2>
-                        <div class="space-y-4">
-                            <div>
-                                <div class="flex items-center mb-2"><span class="w-4 h-4 rounded-full mr-2" style="background-color: #3b82f6;"></span><h3 class="font-semibold text-lg text-gray-800">Luzon</h3></div>
-                                <div class="pl-6 space-y-1 text-sm">
-                                    <div class="flex justify-between"><span class="text-gray-500">Avg. Cap/User:</span><span id="luzon-avg-cap" class="font-medium text-gray-900"></span></div>
-                                    <div class="flex justify-between"><span class="text-gray-500">Avg. Users/DU:</span><span id="luzon-avg-users" class="font-medium text-gray-900"></span></div>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="flex items-center mb-2"><span class="w-4 h-4 rounded-full mr-2" style="background-color: #10b981;"></span><h3 class="font-semibold text-lg text-gray-800">Visayas</h3></div>
-                                <div class="pl-6 space-y-1 text-sm">
-                                    <div class="flex justify-between"><span class="text-gray-500">Avg. Cap/User:</span><span id="visayas-avg-cap" class="font-medium text-gray-900"></span></div>
-                                    <div class="flex justify-between"><span class="text-gray-500">Avg. Users/DU:</span><span id="visayas-avg-users" class="font-medium text-gray-900"></span></div>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="flex items-center mb-2"><span class="w-4 h-4 rounded-full mr-2" style="background-color: #f97316;"></span><h3 class="font-semibold text-lg text-gray-800">Mindanao</h3></div>
-                                <div class="pl-6 space-y-1 text-sm">
-                                    <div class="flex justify-between"><span class="text-gray-500">Avg. Cap/User:</span><span id="mindanao-avg-cap" class="font-medium text-gray-900"></span></div>
-                                    <div class="flex justify-between"><span class="text-gray-500">Avg. Users/DU:</span><span id="mindanao-avg-users" class="font-medium text-gray-900"></span></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 print-container">
+                <!-- Map Card: Spans 2 columns and 3 rows -->
+                <div class="lg:col-span-2 lg:row-span-3 bg-white p-6 rounded-2xl shadow-lg border border-gray-200 flex flex-col">
+                    <h2 class="text-xl font-semibold mb-4 text-gray-900 flex-shrink-0">Distribution Utility Locations</h2>
+                    <div id="map" class="flex-grow rounded-lg min-h-[600px]"></div>
                 </div>
                 
-                <!-- Right Column -->
-                <div class="space-y-6">
-                    <div class="bg-white p-6 rounded-2xl shadow-lg border border-gray-200">
-                        <h2 class="text-xl font-semibold mb-4 text-gray-900">Yearly Implementation Growth</h2>
-                        <div class="chart-container"><canvas id="yearlyImplementationChart"></canvas></div>
+                <!-- Top DUs Card -->
+                <div class="lg:col-span-1 bg-white p-6 rounded-2xl shadow-lg border border-gray-200">
+                    <div class="flex justify-between items-center mb-4">
+                         <h2 id="top-dus-title" class="text-xl font-semibold text-gray-900">Top 10 DUs</h2>
+                         <div class="flex gap-1 bg-gray-100 p-1 rounded-lg text-xs">
+                            <button id="top-du-cap-btn" class="top-du-tab-btn selector-tab-active px-3 py-1 font-medium rounded-md">Capacity</button>
+                            <button id="top-du-qe-btn" class="top-du-tab-btn px-3 py-1 font-medium text-gray-500 hover:bg-gray-200 rounded-md">QEs</button>
+                         </div>
                     </div>
-                    <div class="bg-white p-6 rounded-2xl shadow-lg border border-gray-200">
-                        <h2 class="text-xl font-semibold mb-4 text-gray-900">Top 5 DUs by Capacity</h2>
-                        <ol id="top5-list" class="space-y-3"></ol>
+                    <ol id="top-dus-list" class="space-y-3"></ol>
+                </div>
+                
+                <!-- Grid Distribution Card -->
+                <div class="lg:col-span-1 bg-white p-6 rounded-2xl shadow-lg border border-gray-200">
+                    <div class="flex justify-between items-center mb-4">
+                        <h2 class="text-xl font-semibold text-gray-900">Grid Distribution</h2>
+                        <div class="flex gap-1 bg-gray-100 p-1 rounded-lg text-xs">
+                            <button id="grid-dist-cap-btn" class="grid-dist-tab-btn selector-tab-active px-3 py-1 font-medium rounded-md">Capacity</button>
+                            <button id="grid-dist-qe-btn" class="grid-dist-tab-btn px-3 py-1 font-medium text-gray-500 hover:bg-gray-200 rounded-md">QEs</button>
+                        </div>
                     </div>
-                    <div class="bg-white p-6 rounded-2xl shadow-lg border border-gray-200">
-                        <h2 class="text-xl font-semibold mb-4 text-gray-900">Capacity by Grid</h2>
-                        <div class="chart-container" style="height: 250px;"><canvas id="gridDistributionChart"></canvas></div>
-                    </div>
+                    <div class="chart-container"><canvas id="gridDistributionChart"></canvas></div>
+                </div>
+
+                <!-- Yearly Growth Card -->
+                <div class="lg:col-span-1 bg-white p-6 rounded-2xl shadow-lg border border-gray-200">
+                    <h2 class="text-xl font-semibold mb-4 text-gray-900">Yearly Implementation Growth</h2>
+                    <div class="chart-container" style="height: 200px"><canvas id="yearlyImplementationChart"></canvas></div>
                 </div>
             </div>
 
@@ -171,110 +158,17 @@
             const gridData = { luzon: { users: 14175, capacity: 117478.14 }, visayas: { users: 2792, capacity: 37630.42 }, mindanao: { users: 766, capacity: 8381.52 } };
             const duDataSource = {
                 luzon: [
-                    { du: "AEC", fullName: "Angeles Electric Corporation", users: 332, capacity: 3153.78, coords: [15.1433, 120.5833] },
-                    { du: "AURELCO", fullName: "Aurora Electric Cooperative, Inc.", users: 1, capacity: 15.54, coords: [15.7909, 121.5647] },
-                    { du: "BATELEC I", fullName: "Batangas I Electric Cooperative, Inc.", users: 114, capacity: 1025.45, coords: [14.0536, 120.9419] },
-                    { du: "BATELEC II", fullName: "Batangas II Electric Cooperative, Inc.", users: 265, capacity: 2370.21, coords: [13.7565, 121.0583] },
-                    { du: "BENECO", fullName: "Benguet Electric Cooperative, Inc.", users: 3, capacity: 78.68, coords: [16.4102, 120.5971] },
-                    { du: "CAGELCO I", fullName: "Cagayan I Electric Cooperative, Inc.", users: 102, capacity: 1310.16, coords: [17.6167, 121.7292] },
-                    { du: "CAGELCO II", fullName: "Cagayan II Electric Cooperative, Inc.", users: 13, capacity: 100.97, coords: [18.2520, 121.6425] },
-                    { du: "CANORECO", fullName: "Camarines Norte Electric Cooperative, Inc.", users: 7, capacity: 95.12, coords: [14.1167, 122.9500] },
-                    { du: "CEDC", fullName: "Clark Electric Distribution Corporation", users: 8, capacity: 269.66, coords: [15.1764, 120.5160] },
-                    { du: "CELCOR", fullName: "Cabanatuan Electric Corporation", users: 232, capacity: 1952.64 },
-                    { du: "CENPELCO", fullName: "Central Pangasinan Electric Cooperative, Inc.", users: 82, capacity: 923.32, coords: [15.8911, 120.3541] },
-                    { du: "DECORP", fullName: "Dagupan Electric Corporation", users: 220, capacity: 2437.64, coords: [16.0433, 120.3333] },
-                    { du: "IEC", fullName: "Ibaan Electric Corporation", users: 7, capacity: 72.82, coords: [13.8189, 121.1319] },
-                    { du: "INEC", fullName: "Ilocos Norte Electric Cooperative, Inc.", users: 140, capacity: 1183.98, coords: [18.1956, 120.5947] },
-                    { du: "ISECO", fullName: "Ilocos Sur Electric Cooperative, Inc.", users: 161, capacity: 1738.14, coords: [17.5700, 120.3881] },
-                    { du: "ISELCO I", fullName: "Isabela I Electric Cooperative, Inc.", users: 43, capacity: 625.75, coords: [16.9667, 121.6500] },
-                    { du: "ISELCO II", fullName: "Isabela II Electric Cooperative, Inc.", users: 23, capacity: 363.07, coords: [17.1500, 121.7667] },
-                    { du: "LUECO", fullName: "La Union Electric Company, Inc.", users: 88, capacity: 1059.04, coords: [16.6167, 120.3167] },
-                    { du: "LUELCO", fullName: "La Union Electric Cooperative, Inc.", users: 86, capacity: 944.55, coords: [16.6167, 120.3167] },
-                    { du: "MALVEZ", fullName: "Malvez", users: 1, capacity: 14.18 },
-                    { du: "MERALCO", fullName: "Manila Electric Company", users: 9481, capacity: 69685.08, coords: [14.5995, 120.9842] },
-                    { du: "NEECO I", fullName: "Nueva Ecija I Electric Cooperative, Inc.", users: 152, capacity: 1332.76, coords: [15.4833, 120.9667] },
-                    { du: "NEECO II - A1", fullName: "Nueva Ecija II Electric Cooperative - Area 1", users: 67, capacity: 627.20, coords: [15.3000, 120.9000] },
-                    { du: "NEECO II - A2", fullName: "Nueva Ecija II Electric Cooperative - Area 2", users: 61, capacity: 602.42, coords: [15.3000, 120.9000] },
-                    { du: "NUVELCO", fullName: "Nueva Vizcaya Electric Cooperative, Inc.", users: 2, capacity: 5.12, coords: [16.5167, 121.1500] },
-                    { du: "OEDC", fullName: "Olongapo Electricity Distribution Company, Inc.", users: 120, capacity: 925.62, coords: [14.8292, 120.2833] },
-                    { du: "PANELCO I", fullName: "Pangasinan I Electric Cooperative, Inc.", users: 8, capacity: 21.11, coords: [16.0333, 120.3333] },
-                    { du: "PANELCO III", fullName: "Pangasinan III Electric Cooperative, Inc.", users: 177, capacity: 1802.20, coords: [15.8000, 120.3333] },
-                    { du: "PELCO I", fullName: "Pampanga I Electric Cooperative, Inc.", users: 533, capacity: 5039.98, coords: [14.9000, 120.6833] },
-                    { du: "PELCO II", fullName: "Pampanga II Electric Cooperative, Inc.", users: 6, capacity: 48.22, coords: [15.0333, 120.6833] },
-                    { du: "PELCO III", fullName: "Pampanga III Electric Cooperative, Inc.", users: 2, capacity: 104.08, coords: [15.0833, 120.7000] },
-                    { du: "PENELECO", fullName: "Peninsula Electric Cooperative, Inc.", users: 438, capacity: 3867.46, coords: [14.7500, 120.3500] },
-                    { du: "PRESCO", fullName: "Pampanga Rural Electric Service Cooperative", users: 233, capacity: 2137.90 },
-                    { du: "QUEZELCO I", fullName: "Quezon I Electric Cooperative, Inc.", users: 8, capacity: 135.13, coords: [13.9167, 121.6167] },
-                    { du: "QUEZELCO II", fullName: "Quezon II Electric Cooperative, Inc.", users: 4, capacity: 83.43, coords: [14.7431, 121.6508] },
-                    { du: "SAJELCO", fullName: "San Jose City Electric Light Company", users: 133, capacity: 1538.66, coords: [15.7833, 120.9833] },
-                    { du: "SEZ", fullName: "Subic Enerzone Corporation", users: 18, capacity: 194.39, coords: [14.8214, 120.2858] },
-                    { du: "SFELAPCO", fullName: "San Fernando Electric Light and Power Co.", users: 236, capacity: 2448.46, coords: [15.0292, 120.6922] },
-                    { du: "SORECO II", fullName: "Sorsogon II Electric Cooperative, Inc.", users: 1, capacity: 60.30, coords: [12.9667, 124.0000] },
-                    { du: "TARELCO I", fullName: "Tarlac I Electric Cooperative, Inc.", users: 48, capacity: 386.73, coords: [15.4833, 120.5833] },
-                    { du: "TARELCO II", fullName: "Tarlac II Electric Cooperative, Inc.", users: 59, capacity: 520.73, coords: [15.3500, 120.5833] },
-                    { du: "TEI", fullName: "Tarlac Electric, Inc.", users: 302, capacity: 4078.54, coords: [15.4833, 120.5833] },
-                    { du: "ZAMECO I", fullName: "Zambales I Electric Cooperative, Inc.", users: 140, capacity: 1918.88, coords: [14.8292, 120.2833] },
-                    { du: "ZAMECO II", fullName: "Zambales II Electric Cooperative, Inc.", users: 18, capacity: 179.10, coords: [15.3333, 119.9833] },
+                    { du: "AEC", fullName: "Angeles Electric Corporation", users: 332, capacity: 3153.78, coords: [15.1433, 120.5833] }, { du: "AURELCO", fullName: "Aurora Electric Cooperative, Inc.", users: 1, capacity: 15.54, coords: [15.7909, 121.5647] }, { du: "BATELEC I", fullName: "Batangas I Electric Cooperative, Inc.", users: 114, capacity: 1025.45, coords: [14.0536, 120.9419] }, { du: "BATELEC II", fullName: "Batangas II Electric Cooperative, Inc.", users: 265, capacity: 2370.21, coords: [13.7565, 121.0583] }, { du: "BENECO", fullName: "Benguet Electric Cooperative, Inc.", users: 3, capacity: 78.68, coords: [16.4102, 120.5971] }, { du: "CAGELCO I", fullName: "Cagayan I Electric Cooperative, Inc.", users: 102, capacity: 1310.16, coords: [17.6167, 121.7292] }, { du: "CAGELCO II", fullName: "Cagayan II Electric Cooperative, Inc.", users: 13, capacity: 100.97, coords: [18.2520, 121.6425] }, { du: "CANORECO", fullName: "Camarines Norte Electric Cooperative, Inc.", users: 7, capacity: 95.12, coords: [14.1167, 122.9500] }, { du: "CEDC", fullName: "Clark Electric Distribution Corporation", users: 8, capacity: 269.66, coords: [15.1764, 120.5160] }, { du: "CELCOR", fullName: "Cabanatuan Electric Corporation", users: 232, capacity: 1952.64 }, { du: "CENPELCO", fullName: "Central Pangasinan Electric Cooperative, Inc.", users: 82, capacity: 923.32, coords: [15.8911, 120.3541] }, { du: "DECORP", fullName: "Dagupan Electric Corporation", users: 220, capacity: 2437.64, coords: [16.0433, 120.3333] }, { du: "IEC", fullName: "Ibaan Electric Corporation", users: 7, capacity: 72.82, coords: [13.8189, 121.1319] }, { du: "INEC", fullName: "Ilocos Norte Electric Cooperative, Inc.", users: 140, capacity: 1183.98, coords: [18.1956, 120.5947] }, { du: "ISECO", fullName: "Ilocos Sur Electric Cooperative, Inc.", users: 161, capacity: 1738.14, coords: [17.5700, 120.3881] }, { du: "ISELCO I", fullName: "Isabela I Electric Cooperative, Inc.", users: 43, capacity: 625.75, coords: [16.9667, 121.6500] }, { du: "ISELCO II", fullName: "Isabela II Electric Cooperative, Inc.", users: 23, capacity: 363.07, coords: [17.1500, 121.7667] }, { du: "LUECO", fullName: "La Union Electric Company, Inc.", users: 88, capacity: 1059.04, coords: [16.6167, 120.3167] }, { du: "LUELCO", fullName: "La Union Electric Cooperative, Inc.", users: 86, capacity: 944.55, coords: [16.6167, 120.3167] }, { du: "MALVEZ", fullName: "Malvez", users: 1, capacity: 14.18 }, { du: "MERALCO", fullName: "Manila Electric Company", users: 9481, capacity: 69685.08, coords: [14.5995, 120.9842] }, { du: "NEECO I", fullName: "Nueva Ecija I Electric Cooperative, Inc.", users: 152, capacity: 1332.76, coords: [15.4833, 120.9667] }, { du: "NEECO II - A1", fullName: "Nueva Ecija II Electric Cooperative - Area 1", users: 67, capacity: 627.20, coords: [15.3000, 120.9000] }, { du: "NEECO II - A2", fullName: "Nueva Ecija II Electric Cooperative - Area 2", users: 61, capacity: 602.42, coords: [15.3000, 120.9000] }, { du: "NUVELCO", fullName: "Nueva Vizcaya Electric Cooperative, Inc.", users: 2, capacity: 5.12, coords: [16.5167, 121.1500] }, { du: "OEDC", fullName: "Olongapo Electricity Distribution Company, Inc.", users: 120, capacity: 925.62, coords: [14.8292, 120.2833] }, { du: "PANELCO I", fullName: "Pangasinan I Electric Cooperative, Inc.", users: 8, capacity: 21.11, coords: [16.0333, 120.3333] }, { du: "PANELCO III", fullName: "Pangasinan III Electric Cooperative, Inc.", users: 177, capacity: 1802.20, coords: [15.8000, 120.3333] }, { du: "PELCO I", fullName: "Pampanga I Electric Cooperative, Inc.", users: 533, capacity: 5039.98, coords: [14.9000, 120.6833] }, { du: "PELCO II", fullName: "Pampanga II Electric Cooperative, Inc.", users: 6, capacity: 48.22, coords: [15.0333, 120.6833] }, { du: "PELCO III", fullName: "Pampanga III Electric Cooperative, Inc.", users: 2, capacity: 104.08, coords: [15.0833, 120.7000] }, { du: "PENELECO", fullName: "Peninsula Electric Cooperative, Inc.", users: 438, capacity: 3867.46, coords: [14.7500, 120.3500] }, { du: "PRESCO", fullName: "Pampanga Rural Electric Service Cooperative", users: 233, capacity: 2137.90 }, { du: "QUEZELCO I", fullName: "Quezon I Electric Cooperative, Inc.", users: 8, capacity: 135.13, coords: [13.9167, 121.6167] }, { du: "QUEZELCO II", fullName: "Quezon II Electric Cooperative, Inc.", users: 4, capacity: 83.43, coords: [14.7431, 121.6508] }, { du: "SAJELCO", fullName: "San Jose City Electric Light Company", users: 133, capacity: 1538.66, coords: [15.7833, 120.9833] }, { du: "SEZ", fullName: "Subic Enerzone Corporation", users: 18, capacity: 194.39, coords: [14.8214, 120.2858] }, { du: "SFELAPCO", fullName: "San Fernando Electric Light and Power Co.", users: 236, capacity: 2448.46, coords: [15.0292, 120.6922] }, { du: "SORECO II", fullName: "Sorsogon II Electric Cooperative, Inc.", users: 1, capacity: 60.30, coords: [12.9667, 124.0000] }, { du: "TARELCO I", fullName: "Tarlac I Electric Cooperative, Inc.", users: 48, capacity: 386.73, coords: [15.4833, 120.5833] }, { du: "TARELCO II", fullName: "Tarlac II Electric Cooperative, Inc.", users: 59, capacity: 520.73, coords: [15.3500, 120.5833] }, { du: "TEI", fullName: "Tarlac Electric, Inc.", users: 302, capacity: 4078.54, coords: [15.4833, 120.5833] }, { du: "ZAMECO I", fullName: "Zambales I Electric Cooperative, Inc.", users: 140, capacity: 1918.88, coords: [14.8292, 120.2833] }, { du: "ZAMECO II", fullName: "Zambales II Electric Cooperative, Inc.", users: 18, capacity: 179.10, coords: [15.3333, 119.9833] },
                 ],
                 visayas: [
-                    { du: "AKELCO", fullName: "Aklan Electric Cooperative, Inc.", users: 44, capacity: 867.19, coords: [11.7083, 122.3667] },
-                    { du: "ANTECO", fullName: "Antique Electric Cooperative, Inc.", users: 15, capacity: 80.12, coords: [10.7500, 121.9667] },
-                    { du: "BLCI", fullName: "Bohol Light Company, Inc.", users: 12, capacity: 91.03, coords: [9.6500, 123.8500] },
-                    { du: "BOHECO I", fullName: "Bohol I Electric Cooperative, Inc.", users: 108, capacity: 1159.55, coords: [9.8500, 124.1667] },
-                    { du: "BOHECO II", fullName: "Bohol II Electric Cooperative, Inc.", users: 52, capacity: 718.88, coords: [9.9333, 124.3833] },
-                    { du: "CEBECO I", fullName: "Cebu I Electric Cooperative, Inc.", users: 73, capacity: 718.09, coords: [10.2500, 123.7500] },
-                    { du: "CEBECO II", fullName: "Cebu II Electric Cooperative, Inc.", users: 8, capacity: 78.72, coords: [10.3167, 123.9000] },
-                    { du: "CEBECO III", fullName: "Cebu III Electric Cooperative, Inc.", users: 15, capacity: 152.20, coords: [10.3667, 123.9833] },
-                    { du: "DORELCO", fullName: "Don Orestes Romualdez Electric Cooperative", users: 2, capacity: 4.32, coords: [11.2417, 125.0000] },
-                    { du: "GUIMELCO", fullName: "Guimaras Electric Cooperative, Inc.", users: 15, capacity: 110.95, coords: [10.5667, 122.6167] },
-                    { du: "ILECO I", fullName: "Iloilo I Electric Cooperative, Inc.", users: 93, capacity: 707.45, coords: [10.7202, 122.5621] },
-                    { du: "ILECO II", fullName: "Iloilo II Electric Cooperative, Inc.", users: 30, capacity: 191.83, coords: [11.0000, 122.7500] },
-                    { du: "ILECO III", fullName: "Iloilo III Electric Cooperative, Inc.", users: 25, capacity: 426.70, coords: [11.2333, 123.0167] },
-                    { du: "LEYECO II", fullName: "Leyte II Electric Cooperative, Inc.", users: 28, capacity: 445.85, coords: [11.2417, 125.0000] },
-                    { du: "LEYECO IV", fullName: "Leyte IV Electric Cooperative, Inc.", users: 22, capacity: 238.31, coords: [10.7500, 124.8167] },
-                    { du: "LEYECO V", fullName: "Leyte V Electric Cooperative, Inc.", users: 78, capacity: 1269.53, coords: [11.0167, 124.6000] },
-                    { du: "MECO", fullName: "Mactan Electric Company, Inc.", users: 45, capacity: 359.39, coords: [10.3167, 123.9667] },
-                    { du: "MEPC", fullName: "Mactan Electric Company, Inc.", users: 133, capacity: 1508.96 },
-                    { du: "NEPC", fullName: "Negros Electric Power Corporation", users: 1108, capacity: 18308.51, coords: [10.6667, 122.9500] },
-                    { du: "NOCECO", fullName: "Negros Occidental Electric Cooperative", users: 1, capacity: 5.00, coords: [10.0167, 122.8667] },
-                    { du: "NORECO I", fullName: "Negros Oriental I Electric Cooperative", users: 7, capacity: 151.44, coords: [9.3167, 123.3000] },
-                    { du: "NORECO II", fullName: "Negros Oriental II Electric Cooperative", users: 295, capacity: 2711.59, coords: [9.3167, 123.3000] },
-                    { du: "NORSAMELCO", fullName: "Northern Samar Electric Cooperative", users: 3, capacity: 21.80, coords: [12.5000, 124.6333] },
-                    { du: "SAMELCO I", fullName: "Samar I Electric Cooperative, Inc.", users: 4, capacity: 46.20, coords: [11.7833, 124.9500] },
-                    { du: "SAMELCO II", fullName: "Samar II Electric Cooperative, Inc.", users: 11, capacity: 408.15, coords: [12.0500, 124.6167] },
-                    { du: "SOLECO", fullName: "Southern Leyte Electric Cooperative", users: 17, capacity: 113.08, coords: [10.3833, 124.9833] },
-                    { du: "VECO", fullName: "Visayan Electric Company", users: 548, capacity: 6744.62, coords: [10.3157, 123.8854] },
+                    { du: "AKELCO", fullName: "Aklan Electric Cooperative, Inc.", users: 44, capacity: 867.19, coords: [11.7083, 122.3667] }, { du: "ANTECO", fullName: "Antique Electric Cooperative, Inc.", users: 15, capacity: 80.12, coords: [10.7500, 121.9667] }, { du: "BLCI", fullName: "Bohol Light Company, Inc.", users: 12, capacity: 91.03, coords: [9.6500, 123.8500] }, { du: "BOHECO I", fullName: "Bohol I Electric Cooperative, Inc.", users: 108, capacity: 1159.55, coords: [9.8500, 124.1667] }, { du: "BOHECO II", fullName: "Bohol II Electric Cooperative, Inc.", users: 52, capacity: 718.88, coords: [9.9333, 124.3833] }, { du: "CEBECO I", fullName: "Cebu I Electric Cooperative, Inc.", users: 73, capacity: 718.09, coords: [10.2500, 123.7500] }, { du: "CEBECO II", fullName: "Cebu II Electric Cooperative, Inc.", users: 8, capacity: 78.72, coords: [10.3167, 123.9000] }, { du: "CEBECO III", fullName: "Cebu III Electric Cooperative, Inc.", users: 15, capacity: 152.20, coords: [10.3667, 123.9833] }, { du: "DORELCO", fullName: "Don Orestes Romualdez Electric Cooperative", users: 2, capacity: 4.32, coords: [11.2417, 125.0000] }, { du: "GUIMELCO", fullName: "Guimaras Electric Cooperative, Inc.", users: 15, capacity: 110.95, coords: [10.5667, 122.6167] }, { du: "ILECO I", fullName: "Iloilo I Electric Cooperative, Inc.", users: 93, capacity: 707.45, coords: [10.7202, 122.5621] }, { du: "ILECO II", fullName: "Iloilo II Electric Cooperative, Inc.", users: 30, capacity: 191.83, coords: [11.0000, 122.7500] }, { du: "ILECO III", fullName: "Iloilo III Electric Cooperative, Inc.", users: 25, capacity: 426.70, coords: [11.2333, 123.0167] }, { du: "LEYECO II", fullName: "Leyte II Electric Cooperative, Inc.", users: 28, capacity: 445.85, coords: [11.2417, 125.0000] }, { du: "LEYECO IV", fullName: "Leyte IV Electric Cooperative, Inc.", users: 22, capacity: 238.31, coords: [10.7500, 124.8167] }, { du: "LEYECO V", fullName: "Leyte V Electric Cooperative, Inc.", users: 78, capacity: 1269.53, coords: [11.0167, 124.6000] }, { du: "MECO", fullName: "Mactan Electric Company, Inc.", users: 45, capacity: 359.39, coords: [10.3167, 123.9667] }, { du: "MEPC", fullName: "Mactan Electric Company, Inc.", users: 133, capacity: 1508.96 }, { du: "NEPC", fullName: "Negros Electric Power Corporation", users: 1108, capacity: 18308.51, coords: [10.6667, 122.9500] }, { du: "NOCECO", fullName: "Negros Occidental Electric Cooperative", users: 1, capacity: 5.00, coords: [10.0167, 122.8667] }, { du: "NORECO I", fullName: "Negros Oriental I Electric Cooperative", users: 7, capacity: 151.44, coords: [9.3167, 123.3000] }, { du: "NORECO II", fullName: "Negros Oriental II Electric Cooperative", users: 295, capacity: 2711.59, coords: [9.3167, 123.3000] }, { du: "NORSAMELCO", fullName: "Northern Samar Electric Cooperative", users: 3, capacity: 21.80, coords: [12.5000, 124.6333] }, { du: "SAMELCO I", fullName: "Samar I Electric Cooperative, Inc.", users: 4, capacity: 46.20, coords: [11.7833, 124.9500] }, { du: "SAMELCO II", fullName: "Samar II Electric Cooperative, Inc.", users: 11, capacity: 408.15, coords: [12.0500, 124.6167] }, { du: "SOLECO", fullName: "Southern Leyte Electric Cooperative", users: 17, capacity: 113.08, coords: [10.3833, 124.9833] }, { du: "VECO", fullName: "Visayan Electric Company", users: 548, capacity: 6744.62, coords: [10.3157, 123.8854] },
                 ],
                 mindanao: [
-                    { du: "ANECO", fullName: "Agusan del Norte Electric Cooperative", users: 6, capacity: 28.10, coords: [8.9500, 125.5333] },
-                    { du: "BUSECO II", fullName: "Bukidnon Second Electric Cooperative", users: 1, capacity: 5.40, coords: [8.1500, 125.0833] },
-                    { du: "CEPALCO", fullName: "Cagayan Electric Power & Light Co.", users: 31, capacity: 482.63, coords: [8.4543, 124.6319] },
-                    { du: "CLPC", fullName: "Cotabato Light and Power Company", users: 7, capacity: 359.37 },
-                    { du: "DASURECO", fullName: "Davao del Sur Electric Cooperative", users: 9, capacity: 80.89, coords: [6.8333, 125.3500] },
-                    { du: "DLPC", fullName: "Davao Light and Power Company", users: 546, capacity: 5483.95, coords: [7.1907, 125.4553] },
-                    { du: "DORECO", fullName: "Davao Oriental Electric Cooperative", users: 2, capacity: 107.44, coords: [7.1833, 126.2167] },
-                    { du: "FIBECO", fullName: "First Bukidnon Electric Cooperative", users: 5, capacity: 136.52, coords: [7.9167, 125.0667] },
-                    { du: "ILPI", fullName: "Iligan Light & Power, Inc.", users: 38, capacity: 317.29, coords: [8.2333, 124.2500] },
-                    { du: "MOELCI II", fullName: "Misamis Occidental II Electric Cooperative", users: 6, capacity: 87.06, coords: [8.5500, 123.8333] },
-                    { du: "MORESCO I", fullName: "Misamis Oriental I Rural Electric Service", users: 5, capacity: 25.52, coords: [8.5000, 124.7500] },
-                    { du: "SOCOTECO I", fullName: "South Cotabato I Electric Cooperative", users: 56, capacity: 497.70, coords: [6.5000, 124.8500] },
-                    { du: "SOCOTECO II", fullName: "South Cotabato II Electric Cooperative", users: 22, capacity: 311.57, coords: [6.1194, 125.1719] },
-                    { du: "SUKELCO", fullName: "Sultan Kudarat Electric Cooperative", users: 3, capacity: 13.44, coords: [6.7000, 124.6333] },
-                    { du: "ZAMCELCO", fullName: "Zamboanga City Electric Cooperative", users: 14, capacity: 258.01, coords: [6.9214, 122.0790] },
-                    { du: "LANECO", fullName: "Lanao del Norte Electric Cooperative", users: 5, capacity: 83.88, coords: [8.0833, 123.7833] },
-                    { du: "COTELCO", fullName: "Cotabato Electric Cooperative, Inc.", users: 1, capacity: 6.90, coords: [7.2167, 124.2500] },
-                    { du: "NORDECO", fullName: "Northern Davao Electric Cooperative", users: 2, capacity: 13.17, coords: [7.4500, 125.8000] },
-                    { du: "SIARELCO", fullName: "Siargao Electric Cooperative, Inc.", users: 1, capacity: 28.60, coords: [9.8833, 126.0000] },
-                    { du: "SURSECO I", fullName: "Surigao del Sur I Electric Cooperative", users: 5, capacity: 58.09, coords: [8.2500, 126.2500] },
-                    { du: "ZAMSURECO I", fullName: "Zamboanga del Sur I Electric Cooperative", users: 1, capacity: 5.00, coords: [7.8333, 123.3500] },
+                    { du: "ANECO", fullName: "Agusan del Norte Electric Cooperative", users: 6, capacity: 28.10, coords: [8.9500, 125.5333] }, { du: "BUSECO II", fullName: "Bukidnon Second Electric Cooperative", users: 1, capacity: 5.40, coords: [8.1500, 125.0833] }, { du: "CEPALCO", fullName: "Cagayan Electric Power & Light Co.", users: 31, capacity: 482.63, coords: [8.4543, 124.6319] }, { du: "CLPC", fullName: "Cotabato Light and Power Company", users: 7, capacity: 359.37 }, { du: "DASURECO", fullName: "Davao del Sur Electric Cooperative", users: 9, capacity: 80.89, coords: [6.8333, 125.3500] }, { du: "DLPC", fullName: "Davao Light and Power Company", users: 546, capacity: 5483.95, coords: [7.1907, 125.4553] }, { du: "DORECO", fullName: "Davao Oriental Electric Cooperative", users: 2, capacity: 107.44, coords: [7.1833, 126.2167] }, { du: "FIBECO", fullName: "First Bukidnon Electric Cooperative", users: 5, capacity: 136.52, coords: [7.9167, 125.0667] }, { du: "ILPI", fullName: "Iligan Light & Power, Inc.", users: 38, capacity: 317.29, coords: [8.2333, 124.2500] }, { du: "MOELCI II", fullName: "Misamis Occidental II Electric Cooperative", users: 6, capacity: 87.06, coords: [8.5500, 123.8333] }, { du: "MORESCO I", fullName: "Misamis Oriental I Rural Electric Service", users: 5, capacity: 25.52, coords: [8.5000, 124.7500] }, { du: "SOCOTECO I", fullName: "South Cotabato I Electric Cooperative", users: 56, capacity: 497.70, coords: [6.5000, 124.8500] }, { du: "SOCOTECO II", fullName: "South Cotabato II Electric Cooperative", users: 22, capacity: 311.57, coords: [6.1194, 125.1719] }, { du: "SUKELCO", fullName: "Sultan Kudarat Electric Cooperative", users: 3, capacity: 13.44, coords: [6.7000, 124.6333] }, { du: "ZAMCELCO", fullName: "Zamboanga City Electric Cooperative", users: 14, capacity: 258.01, coords: [6.9214, 122.0790] }, { du: "LANECO", fullName: "Lanao del Norte Electric Cooperative", users: 5, capacity: 83.88, coords: [8.0833, 123.7833] }, { du: "COTELCO", fullName: "Cotabato Electric Cooperative, Inc.", users: 1, capacity: 6.90, coords: [7.2167, 124.2500] }, { du: "NORDECO", fullName: "Northern Davao Electric Cooperative", users: 2, capacity: 13.17, coords: [7.4500, 125.8000] }, { du: "SIARELCO", fullName: "Siargao Electric Cooperative, Inc.", users: 1, capacity: 28.60, coords: [9.8833, 126.0000] }, { du: "SURSECO I", fullName: "Surigao del Sur I Electric Cooperative", users: 5, capacity: 58.09, coords: [8.2500, 126.2500] }, { du: "ZAMSURECO I", fullName: "Zamboanga del Sur I Electric Cooperative", users: 1, capacity: 5.00, coords: [7.8333, 123.3500] },
                 ]
             };
             
-            const processDuData = (data, gridName) => data.map(d => ({
-                ...d,
-                grid: gridName,
-                avgCap: d.users > 0 ? d.capacity / d.users : 0
-            }));
+            const processDuData = (data, gridName) => data.map(d => ({ ...d, grid: gridName, avgCap: d.users > 0 ? d.capacity / d.users : 0 }));
             
             const luzonDuData = processDuData(duDataSource.luzon, 'Luzon');
             const visayasDuData = processDuData(duDataSource.visayas, 'Visayas');
@@ -283,8 +177,12 @@
             const duData = { all: allDuData, luzon: luzonDuData, visayas: visayasDuData, mindanao: mindanaoDuData };
             const formatNumber = (num, digits = 2) => num.toLocaleString('en-US', { minimumFractionDigits: digits, maximumFractionDigits: digits });
 
-            // --- KPI Cards & Top 5 Logic ---
-            const updateTotalCards = (data) => {
+            let topDuMode = 'capacity';
+            let gridDistMode = 'capacity';
+            let gridDistributionChartInstance;
+            let yearlyImplementationChartInstance;
+
+            const updateKpiCards = (data) => {
                 const totalUsers = data.reduce((sum, item) => sum + item.users, 0);
                 const totalCapacity = data.reduce((sum, item) => sum + item.capacity, 0);
                 const duCount = new Set(data.map(item => item.du)).size;
@@ -293,30 +191,25 @@
                 document.getElementById('totalCapacity').textContent = formatNumber(totalCapacity);
                 document.getElementById('avgCapPerUser').textContent = totalUsers > 0 ? formatNumber(totalCapacity / totalUsers) : '0.00';
                 document.getElementById('avgUsersPerDU').textContent = duCount > 0 ? formatNumber(totalUsers / duCount, 1) : '0.0';
-
-                const top5 = [...data].sort((a,b) => b.capacity - a.capacity).slice(0, 5);
-                const top5list = document.getElementById('top5-list');
-                top5list.innerHTML = top5.map((d, i) => `<li class="flex items-center justify-between text-sm"><div class="flex items-center"><span class="font-bold text-gray-400 mr-3">${i+1}</span><div><p class="font-medium text-gray-700">${d.fullName}</p><p class="text-xs text-gray-500">${d.du}</p></div></div><span class="font-semibold text-gray-900">${formatNumber(d.capacity)} kWp</span></li>`).join('');
-                if (top5.length === 0) top5list.innerHTML = `<p class="text-gray-500">No data for current filter.</p>`;
+            };
+            
+            const renderTopLists = (data) => {
+                 const topDusList = document.getElementById('top-dus-list');
+                 const topDusTitle = document.getElementById('top-dus-title');
+                 
+                 if (topDuMode === 'capacity') {
+                    topDusTitle.textContent = 'Top 10 DUs by Capacity';
+                    const top10 = [...data].sort((a,b) => b.capacity - a.capacity).slice(0, 10);
+                    topDusList.innerHTML = top10.map((d, i) => `<li class="flex items-center justify-between text-sm"><div class="flex items-center"><span class="font-bold text-gray-400 mr-3 w-5 text-center">${i+1}</span><div><p class="font-medium text-gray-700">${d.fullName}</p><p class="text-xs text-gray-500">${d.du}</p></div></div><span class="font-semibold text-gray-900">${formatNumber(d.capacity)} kWp</span></li>`).join('');
+                    if (top10.length === 0) topDusList.innerHTML = `<p class="text-gray-500">No data for current filter.</p>`;
+                 } else {
+                    topDusTitle.textContent = 'Top 10 DUs by QEs';
+                    const top10 = [...data].sort((a,b) => b.users - a.users).slice(0, 10);
+                    topDusList.innerHTML = top10.map((d, i) => `<li class="flex items-center justify-between text-sm"><div class="flex items-center"><span class="font-bold text-gray-400 mr-3 w-5 text-center">${i+1}</span><div><p class="font-medium text-gray-700">${d.fullName}</p><p class="text-xs text-gray-500">${d.du}</p></div></div><span class="font-semibold text-gray-900">${d.users.toLocaleString()}</span></li>`).join('');
+                    if (top10.length === 0) topDusList.innerHTML = `<p class="text-gray-500">No data for current filter.</p>`;
+                 }
             };
 
-            const renderGridAverages = () => {
-                const grids = ['luzon', 'visayas', 'mindanao'];
-                grids.forEach(gridName => {
-                    const data = duData[gridName];
-                    const totalUsers = data.reduce((sum, item) => sum + item.users, 0);
-                    const totalCapacity = data.reduce((sum, item) => sum + item.capacity, 0);
-                    const duCount = data.length;
-
-                    const avgCap = totalUsers > 0 ? formatNumber(totalCapacity / totalUsers) : '0.00';
-                    const avgUsers = duCount > 0 ? formatNumber(totalUsers / duCount, 1) : '0.0';
-
-                    document.getElementById(`${gridName}-avg-cap`).textContent = `${avgCap} kWp`;
-                    document.getElementById(`${gridName}-avg-users`).textContent = avgUsers;
-                });
-            };
-
-            // --- Map Initialization ---
             const map = L.map('map').setView([12.8797, 121.7740], 6);
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' }).addTo(map);
             let markerLayer = L.layerGroup().addTo(map);
@@ -339,175 +232,74 @@
             legend.onAdd = function (map) { const div = L.DomUtil.create('div', 'info legend'); div.innerHTML += '<h4>Grid</h4>'; for (let key in gridColors) { div.innerHTML += `<i style="background:${gridColors[key]}"></i> ${key}<br>`; } return div; };
             legend.addTo(map);
 
-            // --- Chart.js ---
             const forecastYears = (data, yearsToForecast) => {
-                const recentData = data.slice(-5);
-                const n = recentData.length;
-                const sumX = recentData.reduce((s, d) => s + d.year, 0);
-                const sumY = recentData.reduce((s, d) => s + d.capacity, 0);
-                const sumXY = recentData.reduce((s, d) => s + d.year * d.capacity, 0);
-                const sumXX = recentData.reduce((s, d) => s + d.year * d.year, 0);
-                const slope = (n * sumXY - sumX * sumY) / (n * sumXX - sumX * sumX);
-                const intercept = (sumY - slope * sumX) / n;
-                const forecast = [];
-                const lastYear = data[data.length - 1].year;
-                for (let i = 1; i <= yearsToForecast; i++) {
-                    const nextYear = lastYear + i;
-                    forecast.push({ year: nextYear, capacity: slope * nextYear + intercept });
-                }
+                const recentData = data.slice(-5); const n = recentData.length; const sumX = recentData.reduce((s, d) => s + d.year, 0); const sumY = recentData.reduce((s, d) => s + d.capacity, 0); const sumXY = recentData.reduce((s, d) => s + d.year * d.capacity, 0); const sumXX = recentData.reduce((s, d) => s + d.year * d.year, 0); const slope = (n * sumXY - sumX * sumY) / (n * sumXX - sumX * sumX); const intercept = (sumY - slope * sumX) / n; const forecast = []; const lastYear = data[data.length - 1].year;
+                for (let i = 1; i <= yearsToForecast; i++) { const nextYear = lastYear + i; forecast.push({ year: nextYear, capacity: slope * nextYear + intercept }); }
                 return forecast;
             }
             const forecast = forecastYears(annualData, 2);
             const allYearsData = [...annualData, ...forecast.map(f => ({...f, users: null}))];
 
-            new Chart(document.getElementById('gridDistributionChart').getContext('2d'),{type:'doughnut',data:{labels:['Luzon','Visayas','Mindanao'],datasets:[{data:[gridData.luzon.capacity,gridData.visayas.capacity,gridData.mindanao.capacity],backgroundColor:['#3b82f6','#10b981','#f97316'],borderColor:'#ffffff',borderWidth:4,hoverOffset:8}]},options:{responsive:!0,maintainAspectRatio:!1,cutout:'70%',plugins:{legend:{position:'bottom',labels:{color:'#374151'}},tooltip:{callbacks:{label:function(context){let label=context.label||'';if(label){label+=': '}let value=context.raw;const total=context.chart.getDatasetMeta(0).total;return label+formatNumber(value)+' kWp ('+formatNumber(value/total*100)+'%)'}}}}}});
-            new Chart(document.getElementById('yearlyImplementationChart').getContext('2d'),{type:'bar',data:{labels:allYearsData.map(d=>d.year),datasets:[{label:'Capacity (kWp)',data:allYearsData.map((d,i)=>i<annualData.length?d.capacity:null),backgroundColor:'rgba(59, 130, 246, 0.5)',borderColor:'#3b82f6',borderWidth:2,yAxisID:'yCapacity',borderRadius:6},{label:'Forecast',data:allYearsData.map((d,i)=>i>=annualData.length?d.capacity:null),type:'line',borderColor:'#3b82f6',borderDash:[5,5],yAxisID:'yCapacity',tension:0.3,pointRadius:3},{label:'End-Users',data:annualData.map(d=>d.users),type:'line',borderColor:'#10b981',backgroundColor:'#10b981',yAxisID:'yUsers',tension:0.3,pointRadius:3}]},options:{responsive:!0,maintainAspectRatio:!1,scales:{x:{grid:{color:'rgba(0,0,0,0.1)'},ticks:{color:'#374151'}},yCapacity:{position:'left',title:{display:!0,text:'Capacity (kWp)'},grid:{color:'rgba(0,0,0,0.1)'},ticks:{color:'#374151'}},yUsers:{position:'right',title:{display:!0,text:'End-Users'},grid:{drawOnChartArea:!1},ticks:{color:'#374151'}}},plugins:{legend:{labels:{color:'#374151'}}},interaction:{mode:'index',intersect:!1}}});
+            const renderGridDistributionChart = () => {
+                if (gridDistributionChartInstance) gridDistributionChartInstance.destroy();
+                const chartData = gridDistMode === 'capacity' ? [gridData.luzon.capacity, gridData.visayas.capacity, gridData.mindanao.capacity] : [gridData.luzon.users, gridData.visayas.users, gridData.mindanao.users];
+                const unit = gridDistMode === 'capacity' ? 'kWp' : 'QEs';
+                gridDistributionChartInstance = new Chart(document.getElementById('gridDistributionChart').getContext('2d'),{type:'doughnut',data:{labels:['Luzon','Visayas','Mindanao'],datasets:[{data:chartData,backgroundColor:['#3b82f6','#10b981','#f97316'],borderColor:'#ffffff',borderWidth:4,hoverOffset:8}]},options:{responsive:true,maintainAspectRatio:false,cutout:'70%',plugins:{legend:{position:'bottom',labels:{color:'#374151'}},tooltip:{callbacks:{label:function(context){let label=context.label||'';if(label){label+=': '}let value=context.raw;const total=context.chart.getDatasetMeta(0).total;return `${label}${formatNumber(value, 0)} ${unit} (${formatNumber(value/total*100)}%)`}}}}}});
+            };
 
-            // --- Table, Modal, and Controls Logic ---
+            const renderYearlyChart = () => {
+                if(yearlyImplementationChartInstance) yearlyImplementationChartInstance.destroy();
+                yearlyImplementationChartInstance = new Chart(document.getElementById('yearlyImplementationChart').getContext('2d'),{type:'bar',data:{labels:allYearsData.map(d=>d.year),datasets:[{label:'Capacity (kWp)',data:allYearsData.map((d,i)=>i<annualData.length?d.capacity:null),backgroundColor:'rgba(59, 130, 246, 0.5)',borderColor:'#3b82f6',borderWidth:2,yAxisID:'yCapacity',borderRadius:6},{label:'Forecast',data:allYearsData.map((d,i)=>i>=annualData.length?d.capacity:null),type:'line',borderColor:'#3b82f6',borderDash:[5,5],yAxisID:'yCapacity',tension:0.3,pointRadius:3},{label:'End-Users',data:annualData.map(d=>d.users),type:'line',borderColor:'#10b981',backgroundColor:'#10b981',yAxisID:'yUsers',tension:0.3,pointRadius:3}]},options:{responsive:true,maintainAspectRatio:false,scales:{x:{grid:{color:'rgba(0,0,0,0.1)'},ticks:{color:'#374151'}},yCapacity:{position:'left',title:{display:true,text:'Capacity (kWp)'},grid:{color:'rgba(0,0,0,0.1)'},ticks:{color:'#374151'}},yUsers:{position:'right',title:{display:true,text:'End-Users'},grid:{drawOnChartArea:false},ticks:{color:'#374151'}}},plugins:{legend:{labels:{color:'#374151'}}},interaction:{mode:'index',intersect:false}}});
+            };
+            
             const [tableBody, tabs, searchInput, resetBtn, exportCsvBtn, printBtn, capFilter, usersFilter, compareBtn, selectAllCheckbox] = ['du-table-body','tab-btn','searchInput','resetBtn','exportCsvBtn','printBtn','capacityFilter','usersFilter','compareBtn', 'selectAllCheckbox'].map(id => document.getElementById(id) || document.querySelectorAll('.' + id));
-            let currentGrid = 'all', sortConfig = { key: 'fullName', direction: 'asc' }, currentRenderedData = [], selectedDUs = new Set();
+            let currentGrid = 'all', sortConfig = { key: 'du', direction: 'asc' }, currentRenderedData = [], selectedDUs = new Set();
 
             const renderTable = () => {
                 const searchTerm = searchInput.value.toLowerCase();
                 const minCap = parseFloat(capFilter.value);
                 const minUsers = parseFloat(usersFilter.value);
-                
-                let data = duData[currentGrid].filter(item => 
-                    (item.du.toLowerCase().includes(searchTerm) || item.fullName.toLowerCase().includes(searchTerm)) && 
-                    item.capacity >= minCap && 
-                    item.users >= minUsers
-                );
-                
-                data.sort((a, b) => {
-                    const valA = a[sortConfig.key];
-                    const valB = b[sortConfig.key];
-                    const direction = sortConfig.direction === 'asc' ? 1 : -1;
-                    if (typeof valA === 'string') {
-                        return valA.localeCompare(valB) * direction;
-                    }
-                    return (valA - valB) * direction;
-                });
-
+                let data = duData[currentGrid].filter(item => (item.du.toLowerCase().includes(searchTerm) || item.fullName.toLowerCase().includes(searchTerm)) && item.capacity >= minCap && item.users >= minUsers);
+                data.sort((a, b) => { const valA = a[sortConfig.key]; const valB = b[sortConfig.key]; const direction = sortConfig.direction === 'asc' ? 1 : -1; if (typeof valA === 'string') return valA.localeCompare(valB) * direction; return (valA - valB) * direction; });
                 currentRenderedData = data;
-                tableBody.innerHTML = data.map(item => `
-                    <tr class="border-b border-gray-200 hover:bg-gray-100 transition-colors">
-                        <td class="p-3 no-print"><input type="checkbox" class="du-checkbox" data-du-name="${item.du}" ${selectedDUs.has(item.du)?'checked':''}></td>
-                        <td class="p-3 cursor-pointer view-details" data-du-name="${item.du}">
-                            <div class="font-medium text-gray-800">${item.fullName}</div>
-                            <div class="text-xs text-gray-500">${item.du}</div>
-                        </td>
-                        <td class="p-3 text-right">${item.users.toLocaleString()}</td>
-                        <td class="p-3 text-right">${formatNumber(item.capacity)}</td>
-                        <td class="p-3 text-right">${formatNumber(item.avgCap)}</td>
-                    </tr>`).join('');
-                
-                updateMapMarkers(data);
-                updateTotalCards(data);
-                updateCompareButton();
-
-                if (data.length === 1 && searchInput.value.trim().length > 0) {
-                    const singleDU = data[0];
-                    if (singleDU.coords) {
-                        map.flyTo(singleDU.coords, 12);
-                    }
-                }
+                tableBody.innerHTML = data.map(item => `<tr class="border-b border-gray-200 hover:bg-gray-100 transition-colors"><td class="p-3 no-print"><input type="checkbox" class="du-checkbox" data-du-name="${item.du}" ${selectedDUs.has(item.du)?'checked':''}></td><td class="p-3 cursor-pointer view-details" data-du-name="${item.du}"><div class="font-medium text-gray-800">${item.fullName}</div><div class="text-xs text-gray-500">${item.du}</div></td><td class="p-3 text-right">${item.users.toLocaleString()}</td><td class="p-3 text-right">${formatNumber(item.capacity)}</td><td class="p-3 text-right">${formatNumber(item.avgCap)}</td></tr>`).join('');
+                updateMapMarkers(data); updateKpiCards(data); renderTopLists(data); updateCompareButton();
+                if (data.length === 1 && searchInput.value.trim().length > 0) { const singleDU = data[0]; if (singleDU.coords) map.flyTo(singleDU.coords, 12); }
             };
             
             const updateCompareButton = () => { compareBtn.textContent = `Compare Selected (${selectedDUs.size})`; compareBtn.disabled = selectedDUs.size < 2 || selectedDUs.size > 3; };
-            const showModal = (id) => { 
-                const modal = document.getElementById(id); 
-                if (!modal) return;
-                modal.classList.remove('hidden'); 
-                setTimeout(() => { 
-                    modal.classList.remove('opacity-0'); 
-                    const content = modal.querySelector('.modal-content');
-                    if(content) content.classList.remove('scale-95'); 
-                }, 10); 
-            };
-            const hideModal = (id) => { 
-                const modal = document.getElementById(id); 
-                if (!modal) return;
-                modal.classList.add('opacity-0'); 
-                const content = modal.querySelector('.modal-content');
-                if(content) content.classList.add('scale-95');
-                setTimeout(() => modal.classList.add('hidden'), 300); 
-            };
+            const showModal = (id) => { const modal = document.getElementById(id); if (!modal) return; modal.classList.remove('hidden'); setTimeout(() => { modal.classList.remove('opacity-0'); const content = modal.querySelector('.modal-content'); if(content) content.classList.remove('scale-95'); }, 10); };
+            const hideModal = (id) => { const modal = document.getElementById(id); if (!modal) return; modal.classList.add('opacity-0'); const content = modal.querySelector('.modal-content'); if(content) content.classList.add('scale-95'); setTimeout(() => modal.classList.add('hidden'), 300); };
             
-            // Event Listeners
             tabs.forEach(tab => tab.addEventListener('click', () => { currentGrid = tab.dataset.grid; tabs.forEach(t => t.classList.remove('tab-active')); tab.classList.add('tab-active'); renderTable(); }));
             document.querySelectorAll('thead th[data-sort]').forEach(header => header.addEventListener('click', () => { if(header.dataset.sort) { sortConfig.direction = (sortConfig.key === header.dataset.sort && sortConfig.direction === 'asc') ? 'desc' : 'asc'; sortConfig.key = header.dataset.sort; renderTable(); }}));
             [searchInput, capFilter, usersFilter].forEach(el => el.addEventListener('input', renderTable));
-            resetBtn.addEventListener('click', () => { 
-                searchInput.value = ''; 
-                capFilter.value = 0; 
-                usersFilter.value = 0; 
-                selectedDUs.clear(); 
-                selectAllCheckbox.checked = false; 
-                map.flyTo([12.8797, 121.7740], 6);
-                tabs[0].click(); 
-            });
+            resetBtn.addEventListener('click', () => { searchInput.value = ''; capFilter.value = 0; usersFilter.value = 0; selectedDUs.clear(); selectAllCheckbox.checked = false; map.flyTo([12.8797, 121.7740], 6); tabs[0].click(); });
             printBtn.addEventListener('click', () => window.print());
             
             exportCsvBtn.addEventListener('click', () => {
                 const headers = ['Acronym', 'Full Name', 'Qualified End-Users', 'Capacity (kWp)', 'Avg. Cap/User (kWp)', 'Grid'];
-                const rows = currentRenderedData.map(item => [
-                    `"${item.du}"`,
-                    `"${item.fullName}"`,
-                    item.users,
-                    item.capacity,
-                    item.avgCap.toFixed(2),
-                    `"${item.grid}"`
-                ]);
+                const rows = currentRenderedData.map(item => [`"${item.du}"`,`"${item.fullName}"`,item.users,item.capacity,item.avgCap.toFixed(2),`"${item.grid}"`]);
                 const csvContent = "data:text/csv;charset=utf-8," + [headers.join(','), ...rows.map(e => e.join(','))].join('\n');
-                const encodedUri = encodeURI(csvContent);
-                const link = document.createElement("a");
-                link.setAttribute("href", encodedUri);
-                link.setAttribute("download", "net_metering_data.csv");
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
+                const link = document.createElement("a"); link.setAttribute("href", encodeURI(csvContent)); link.setAttribute("download", "net_metering_data.csv"); document.body.appendChild(link); link.click(); document.body.removeChild(link);
             });
 
-            document.getElementById('du-table-body').addEventListener('click', e => {
-                const parentRow = e.target.closest('tr');
-                if (!parentRow) return;
-
+            tableBody.addEventListener('click', e => {
+                const parentRow = e.target.closest('tr'); if (!parentRow) return;
                 const checkbox = parentRow.querySelector('.du-checkbox');
-                if (checkbox && e.target.type === 'checkbox') {
-                     e.target.checked ? selectedDUs.add(e.target.dataset.duName) : selectedDUs.delete(e.target.dataset.duName); 
-                     updateCompareButton();
-                }
-                
+                if (checkbox && e.target.type === 'checkbox') { e.target.checked ? selectedDUs.add(e.target.dataset.duName) : selectedDUs.delete(e.target.dataset.duName); updateCompareButton(); }
                 const detailsCell = parentRow.querySelector('.view-details');
-                if (detailsCell && (e.target === detailsCell || detailsCell.contains(e.target))) {
-                    const duName = detailsCell.dataset.duName;
-                    const duInfo = allDuData.find(d => d.du === duName);
-                    if (!duInfo) return;
-                    document.getElementById('modal-du-name').textContent = duInfo.fullName;
-                    document.getElementById('modal-du-users').textContent = duInfo.users.toLocaleString();
-                    document.getElementById('modal-du-capacity').textContent = formatNumber(duInfo.capacity);
-                    document.getElementById('modal-du-grid').textContent = duInfo.grid;
-                    showModal('du-modal'); 
-                }
+                if (detailsCell && (e.target === detailsCell || detailsCell.contains(e.target))) { const duName = detailsCell.dataset.duName; const duInfo = allDuData.find(d => d.du === duName); if (!duInfo) return; document.getElementById('modal-du-name').textContent = duInfo.fullName; document.getElementById('modal-du-users').textContent = duInfo.users.toLocaleString(); document.getElementById('modal-du-capacity').textContent = formatNumber(duInfo.capacity); document.getElementById('modal-du-grid').textContent = duInfo.grid; showModal('du-modal'); }
             });
 
             selectAllCheckbox.addEventListener('change', () => { document.querySelectorAll('.du-checkbox').forEach(cb => { cb.checked = selectAllCheckbox.checked; cb.checked ? selectedDUs.add(cb.dataset.duName) : selectedDUs.delete(cb.dataset.duName); }); updateCompareButton(); });
-            compareBtn.addEventListener('click', () => {
-                const compareContent = document.getElementById('compare-content');
-                const toCompare = allDuData.filter(d => selectedDUs.has(d.du));
-                compareContent.innerHTML = toCompare.map(d => `<div class="bg-gray-50 p-4 rounded-lg border">
-                    <h4 class="text-lg font-bold text-gray-900">${d.fullName} <span class="text-sm font-normal text-gray-500">(${d.du})</span></h4>
-                    <p class="text-sm text-gray-500">${d.grid}</p>
-                    <div class="mt-4 space-y-2">
-                        <div class="flex justify-between"><span>Users:</span><span class="font-semibold">${d.users.toLocaleString()}</span></div>
-                        <div class="flex justify-between"><span>Capacity (kWp):</span><span class="font-semibold">${formatNumber(d.capacity)}</span></div>
-                        <div class="flex justify-between"><span>Avg Cap/User:</span><span class="font-semibold">${formatNumber(d.avgCap)}</span></div>
-                    </div>
-                </div>`).join('');
-                showModal('compare-modal');
-            });
+            compareBtn.addEventListener('click', () => { const compareContent = document.getElementById('compare-content'); const toCompare = allDuData.filter(d => selectedDUs.has(d.du)); compareContent.innerHTML = toCompare.map(d => `<div class="bg-gray-50 p-4 rounded-lg border"><h4 class="text-lg font-bold text-gray-900">${d.fullName} <span class="text-sm font-normal text-gray-500">(${d.du})</span></h4><p class="text-sm text-gray-500">${d.grid}</p><div class="mt-4 space-y-2"><div class="flex justify-between"><span>Users:</span><span class="font-semibold">${d.users.toLocaleString()}</span></div><div class="flex justify-between"><span>Capacity (kWp):</span><span class="font-semibold">${formatNumber(d.capacity)}</span></div><div class="flex justify-between"><span>Avg Cap/User:</span><span class="font-semibold">${formatNumber(d.avgCap)}</span></div></div></div>`).join(''); showModal('compare-modal'); });
             
-            // Modal close listeners
+            document.getElementById('top-du-cap-btn').addEventListener('click', (e) => { topDuMode = 'capacity'; document.querySelectorAll('.top-du-tab-btn').forEach(btn => btn.classList.remove('selector-tab-active')); e.target.classList.add('selector-tab-active'); renderTopLists(currentRenderedData); });
+            document.getElementById('top-du-qe-btn').addEventListener('click', (e) => { topDuMode = 'users'; document.querySelectorAll('.top-du-tab-btn').forEach(btn => btn.classList.remove('selector-tab-active')); e.target.classList.add('selector-tab-active'); renderTopLists(currentRenderedData); });
+            document.getElementById('grid-dist-cap-btn').addEventListener('click', (e) => { gridDistMode = 'capacity'; document.querySelectorAll('.grid-dist-tab-btn').forEach(btn => btn.classList.remove('selector-tab-active')); e.target.classList.add('selector-tab-active'); renderGridDistributionChart(); });
+            document.getElementById('grid-dist-qe-btn').addEventListener('click', (e) => { gridDistMode = 'users'; document.querySelectorAll('.grid-dist-tab-btn').forEach(btn => btn.classList.remove('selector-tab-active')); e.target.classList.add('selector-tab-active'); renderGridDistributionChart(); });
+
             ['du-modal', 'about-modal', 'compare-modal'].forEach(id => { document.getElementById(id).addEventListener('click', e => e.target.id === id && hideModal(id)); });
             document.getElementById('modal-close-btn').addEventListener('click', () => hideModal('du-modal'));
             document.getElementById('aboutBtn').addEventListener('click', () => showModal('about-modal'));
@@ -515,9 +307,10 @@
             document.getElementById('compare-close-btn').addEventListener('click', () => hideModal('compare-modal'));
 
             // Initial Render
-            updateTotalCards(allDuData);
-            renderGridAverages();
             renderTable();
+            renderGridDistributionChart();
+            renderYearlyChart();
+            setTimeout(() => { map.invalidateSize() }, 100);
         });
     </script>
 </body>
