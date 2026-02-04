@@ -15,119 +15,165 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1e40af;
+            --success: #10b981;
+            --bg-main: #f1f5f9;
+            --glass-bg: rgba(255, 255, 255, 0.85);
+            --glass-border: rgba(255, 255, 255, 0.4);
+        }
+
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f9fafb;
-        }
-
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: #e5e7eb;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: #9ca3af;
-            border-radius: 10px;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-main);
+            color: #1e293b;
+            line-height: 1.5;
         }
 
         .chart-container {
             position: relative;
-            height: 250px;
+            height: 300px;
             width: 100%;
         }
 
         #map {
-            border-radius: 1rem;
+            width: 100%;
+            border-radius: 1.25rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+            border: 1px solid var(--glass-border);
             z-index: 10;
         }
 
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+        }
+
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 3px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+
+        .tab-btn {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
         .tab-active {
-            background-color: #3b82f6;
-            color: #ffffff;
+            background-color: var(--primary);
+            color: white;
+            box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.3);
         }
 
         .selector-tab-active {
-            background-color: #ffffff;
-            color: #3b82f6;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            background-color: white;
+            color: var(--primary);
+            box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
         }
 
         .modal-overlay {
-            transition: opacity 0.3s ease-in-out;
+            transition: opacity 0.3s ease;
         }
 
         .modal-content {
-            transition: transform 0.3s ease-in-out;
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
-        .leaflet-control-container .leaflet-control.legend {
-            background-color: rgba(255, 255, 255, 0.9);
-            padding: 10px;
-            border-radius: 8px;
-            box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+        /* Mobile Specifics */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.75rem !important;
+            }
+
+            .container {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+
+            #map {
+                height: 400px !important;
+            }
+
+            .kpi-card {
+                padding: 1rem !important;
+            }
+
+            .mobile-hide {
+                display: none !important;
+            }
+
+            .mobile-stack {
+                flex-direction: column !important;
+                align-items: stretch !important;
+            }
+
+            .mobile-full-width {
+                width: 100% !important;
+            }
+        }
+
+        /* Leaflet Legend Premium Styling */
+        .leaflet-control.legend {
+            background: white;
+            padding: 12px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border: 1px solid #edf2f7;
+            font-size: 0.75rem;
         }
 
         .legend h4 {
-            margin: 0 0 5px;
-            font-weight: bold;
-            color: #333;
+            margin-bottom: 8px;
+            font-weight: 700;
+            color: #2d3748;
+            text-transform: uppercase;
+            letter-spacing: 0.025em;
         }
 
         .legend i {
-            width: 18px;
-            height: 18px;
+            width: 14px;
+            height: 14px;
             float: left;
             margin-right: 8px;
-            border-radius: 50%;
+            border-radius: 4px;
+            border: 1px solid rgba(0, 0, 0, 0.1);
         }
 
         @media print {
-            body {
-                -webkit-print-color-adjust: exact;
-                print-color-adjust: exact;
-                background-color: #ffffff !important;
-            }
-
             .no-print {
                 display: none !important;
             }
 
-            .print-container {
-                display: block !important;
+            .bg-main {
+                background: white !important;
+            }
+
+            .glass-card {
+                border: 1px solid #ddd !important;
                 box-shadow: none !important;
-                border: none !important;
-                padding: 0 !important;
-                margin: 0 !important;
-            }
-
-            .grid {
-                display: block !important;
-            }
-
-            .lg\:col-span-1,
-            .lg\:col-span-2 {
-                width: 100% !important;
-            }
-
-            #map {
-                height: 300px !important;
-                page-break-inside: avoid;
-            }
-
-            .chart-container {
-                height: 250px !important;
-                page-break-inside: avoid;
-            }
-
-            header p {
-                font-size: 12pt;
-            }
-
-            h1 {
-                font-size: 24pt;
+                background: white !important;
             }
         }
     </style>
@@ -435,7 +481,7 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             // --- DATA ---
-            const annualData = [{ year: 2015, users: 200, capacity: 1109.33 }, { year: 2016, users: 536, capacity: 3598.19 }, { year: 2017, users: 663, capacity: 5298.71 }, { year: 2018, users: 844, capacity: 7652.04 }, { year: 2019, users: 1168, capacity: 9695.48 }, { year: 2020, users: 590, capacity: 4832.73 }, { year: 2021, users: 1715, capacity: 14552.62 }, { year: 2022, users: 1867, capacity: 16554.33 }, { year: 2023, users: 4125, capacity: 38157.85 }, { year: 2024, users: 3897, capacity: 39186.43 }, { year: 2025, users: 3378, capacity: 37961.74 },];
+            const annualData = [{ year: 2015, users: 200, capacity: 1109.33 }, { year: 2016, users: 536, capacity: 3598.19 }, { year: 2017, users: 663, capacity: 5298.71 }, { year: 2018, users: 844, capacity: 7652.04 }, { year: 2019, users: 1168, capacity: 9695.48 }, { year: 2020, users: 590, capacity: 4832.73 }, { year: 2021, users: 1715, capacity: 14552.62 }, { year: 2022, users: 1867, capacity: 16554.33 }, { year: 2023, users: 4125, capacity: 38157.85 }, { year: 2024, users: 3897, capacity: 39186.43 }, { year: 2025, users: 5619, capacity: 65366.28 },];
             const gridData = { luzon: { users: 17141, capacity: 151269.90 }, visayas: { users: 3179, capacity: 43688.57 }, mindanao: { users: 904, capacity: 11045.51 } };
             const duDataSource = {
                 luzon: [
