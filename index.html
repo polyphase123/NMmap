@@ -188,7 +188,7 @@
         <header class="text-center mb-8 relative">
             <h1 class="text-3xl md:text-4xl font-bold text-gray-900 tracking-tight">Philippine Net-Metering Dashboard
             </h1>
-            <p class="text-gray-500 mt-2 text-lg">Annual Implementation with COC as of 30 April 2026</p>
+            <p class="text-gray-500 mt-2 text-lg">Annual Implementation as of 30 June 2026</p>
             <div class="absolute top-0 right-0 no-print">
                 <button id="aboutBtn" class="p-2 rounded-full hover:bg-gray-200" title="About this data">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-500" fill="none"
@@ -202,71 +202,69 @@
 
         <div class="space-y-6">
             <!-- Top KPI Cards -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
-                <div class="bg-white p-6 rounded-2xl shadow-lg border border-gray-200">
-                    <div class="flex items-center space-x-4">
-                        <div class="bg-indigo-500/10 p-3 rounded-full"><svg xmlns="http://www.w3.org/2000/svg"
-                                class="h-6 w-6 text-indigo-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                                stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                            </svg></div>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6">
+                <div class="bg-white p-4 md:p-6 rounded-2xl shadow-lg border border-gray-200">
+                    <div class="flex items-center space-x-3 md:space-x-4">
+                        <div class="bg-indigo-500/10 p-2 md:p-3 rounded-full flex-shrink-0">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 md:h-6 md:w-6 text-indigo-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                            </svg>
+                        </div>
                         <div>
-                            <p class="text-gray-500 text-sm font-medium">Participating DUs</p>
-                            <p class="text-2xl font-bold text-gray-900" id="totalDUs"></p>
+                            <p class="text-gray-500 text-xs md:text-sm font-medium">Participating DUs</p>
+                            <p class="text-lg md:text-2xl font-bold text-gray-900" id="totalDUs"></p>
                         </div>
                     </div>
                 </div>
-                <div class="bg-white p-6 rounded-2xl shadow-lg border border-gray-200">
-                    <div class="flex items-center space-x-4">
-                        <div class="bg-blue-500/10 p-3 rounded-full"><svg xmlns="http://www.w3.org/2000/svg"
-                                class="h-6 w-6 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                            </svg></div>
+                <div class="bg-white p-4 md:p-6 rounded-2xl shadow-lg border border-gray-200">
+                    <div class="flex items-center space-x-3 md:space-x-4">
+                        <div class="bg-blue-500/10 p-2 md:p-3 rounded-full flex-shrink-0">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 md:h-6 md:w-6 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                            </svg>
+                        </div>
                         <div>
-                            <p class="text-gray-500 text-sm font-medium">Total QEs</p>
-                            <p class="text-2xl font-bold text-gray-900" id="totalUsers"></p>
+                            <p class="text-gray-500 text-xs md:text-sm font-medium">Total QEs</p>
+                            <p class="text-lg md:text-2xl font-bold text-gray-900" id="totalUsers"></p>
                         </div>
                     </div>
                 </div>
-                <div class="bg-white p-6 rounded-2xl shadow-lg border border-gray-200">
-                    <div class="flex items-center space-x-4">
-                        <div class="bg-green-500/10 p-3 rounded-full"><svg xmlns="http://www.w3.org/2000/svg"
-                                class="h-6 w-6 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <div class="bg-white p-4 md:p-6 rounded-2xl shadow-lg border border-gray-200 col-span-1">
+                    <div class="flex items-center space-x-3 md:space-x-4">
+                        <div class="bg-green-500/10 p-2 md:p-3 rounded-full flex-shrink-0">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 md:h-6 md:w-6 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                            </svg></div>
+                            </svg>
+                        </div>
                         <div>
-                            <p class="text-gray-500 text-sm font-medium">Total Capacity (kWp)</p>
-                            <p class="text-2xl font-bold text-gray-900" id="totalCapacity"></p>
+                            <p class="text-gray-500 text-xs md:text-sm font-medium">Total Capacity (kWp)</p>
+                            <p class="text-lg md:text-2xl font-bold text-gray-900" id="totalCapacity"></p>
                         </div>
                     </div>
                 </div>
-                <div class="bg-white p-6 rounded-2xl shadow-lg border border-gray-200">
-                    <div class="flex items-center space-x-4">
-                        <div class="bg-yellow-500/10 p-3 rounded-full"><svg xmlns="http://www.w3.org/2000/svg"
-                                class="h-6 w-6 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                                stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
-                            </svg></div>
+                <div class="bg-white p-4 md:p-6 rounded-2xl shadow-lg border border-gray-200">
+                    <div class="flex items-center space-x-3 md:space-x-4">
+                        <div class="bg-yellow-500/10 p-2 md:p-3 rounded-full flex-shrink-0">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 md:h-6 md:w-6 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                            </svg>
+                        </div>
                         <div>
-                            <p class="text-gray-500 text-sm font-medium">Avg. Cap / User (kWp)</p>
-                            <p class="text-2xl font-bold text-gray-900" id="avgCapPerUser"></p>
+                            <p class="text-gray-500 text-xs md:text-sm font-medium">Avg. Cap/User (kWp)</p>
+                            <p class="text-lg md:text-2xl font-bold text-gray-900" id="avgCapPerUser"></p>
                         </div>
                     </div>
                 </div>
-                <div class="bg-white p-6 rounded-2xl shadow-lg border border-gray-200">
-                    <div class="flex items-center space-x-4">
-                        <div class="bg-purple-500/10 p-3 rounded-full"><svg xmlns="http://www.w3.org/2000/svg"
-                                class="h-6 w-6 text-purple-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                                stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                            </svg></div>
+                <div class="bg-white p-4 md:p-6 rounded-2xl shadow-lg border border-gray-200 col-span-2 md:col-span-1">
+                    <div class="flex items-center space-x-3 md:space-x-4">
+                        <div class="bg-purple-500/10 p-2 md:p-3 rounded-full flex-shrink-0">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 md:h-6 md:w-6 text-purple-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                            </svg>
+                        </div>
                         <div>
-                            <p class="text-gray-500 text-sm font-medium">Avg. Users / DU</p>
-                            <p class="text-2xl font-bold text-gray-900" id="avgUsersPerDU"></p>
+                            <p class="text-gray-500 text-xs md:text-sm font-medium">Avg. Users / DU</p>
+                            <p class="text-lg md:text-2xl font-bold text-gray-900" id="avgUsersPerDU"></p>
                         </div>
                     </div>
                 </div>
@@ -276,16 +274,16 @@
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 print-container">
                 <!-- Map Card: Spans 2 columns and 3 rows -->
                 <div
-                    class="lg:col-span-2 lg:row-span-3 bg-white p-6 rounded-2xl shadow-lg border border-gray-200 flex flex-col">
+                    class="lg:col-span-2 lg:row-span-3 bg-white p-4 md:p-6 rounded-2xl shadow-lg border border-gray-200 flex flex-col">
                     <h2 class="text-xl font-semibold mb-4 text-gray-900 flex-shrink-0">Distribution Utility Locations
                     </h2>
-                    <div id="map" class="flex-grow rounded-lg min-h-[600px]"></div>
+                    <div id="map" class="flex-grow rounded-lg min-h-[320px] sm:min-h-[400px] md:min-h-[600px]"></div>
                 </div>
 
                 <!-- Top DUs Card -->
-                <div class="lg:col-span-1 bg-white p-6 rounded-2xl shadow-lg border border-gray-200">
+                <div class="lg:col-span-1 bg-white p-4 md:p-6 rounded-2xl shadow-lg border border-gray-200">
                     <div class="flex justify-between items-center mb-4">
-                        <h2 id="top-dus-title" class="text-xl font-semibold text-gray-900">Top 10 DUs</h2>
+                        <h2 id="top-dus-title" class="text-lg md:text-xl font-semibold text-gray-900">Top 10 DUs</h2>
                         <div class="flex gap-1 bg-gray-100 p-1 rounded-lg text-xs">
                             <button id="top-du-cap-btn"
                                 class="top-du-tab-btn selector-tab-active px-3 py-1 font-medium rounded-md">Capacity</button>
@@ -297,9 +295,9 @@
                 </div>
 
                 <!-- Grid Distribution Card -->
-                <div class="lg:col-span-1 bg-white p-6 rounded-2xl shadow-lg border border-gray-200">
+                <div class="lg:col-span-1 bg-white p-4 md:p-6 rounded-2xl shadow-lg border border-gray-200">
                     <div class="flex justify-between items-center mb-4">
-                        <h2 class="text-xl font-semibold text-gray-900">Grid Distribution</h2>
+                        <h2 class="text-lg md:text-xl font-semibold text-gray-900">Grid Distribution</h2>
                         <div class="flex gap-1 bg-gray-100 p-1 rounded-lg text-xs">
                             <button id="grid-dist-cap-btn"
                                 class="grid-dist-tab-btn selector-tab-active px-3 py-1 font-medium rounded-md">Capacity</button>
@@ -311,30 +309,30 @@
                 </div>
 
                 <!-- Yearly Growth Card -->
-                <div class="lg:col-span-1 bg-white p-6 rounded-2xl shadow-lg border border-gray-200">
-                    <h2 class="text-xl font-semibold mb-4 text-gray-900">Yearly Implementation Growth</h2>
+                <div class="lg:col-span-1 bg-white p-4 md:p-6 rounded-2xl shadow-lg border border-gray-200">
+                    <h2 class="text-lg md:text-xl font-semibold mb-4 text-gray-900">Yearly Implementation Growth</h2>
                     <div class="chart-container" style="height: 200px"><canvas id="yearlyImplementationChart"></canvas>
                     </div>
                 </div>
             </div>
 
             <!-- Table -->
-            <div class="mt-6 bg-white p-6 rounded-2xl shadow-lg border border-gray-200 print-container">
+            <div class="mt-6 bg-white p-4 md:p-6 rounded-2xl shadow-lg border border-gray-200 print-container">
                 <h2 class="text-xl font-semibold mb-4 text-gray-900">Distribution Utility Breakdown</h2>
                 <div class="no-print">
-                    <div class="flex flex-col sm:flex-row justify-between items-center mb-4 gap-4">
-                        <div class="flex flex-wrap gap-2"><button
-                                class="tab-btn tab-active px-4 py-2 rounded-lg text-sm font-medium"
+                    <div class="flex flex-col md:flex-row justify-between items-stretch md:items-center mb-4 gap-4">
+                        <div class="flex flex-wrap gap-2 justify-center md:justify-start"><button
+                                class="tab-btn tab-active px-3 md:px-4 py-2 rounded-lg text-xs md:text-sm font-medium"
                                 data-grid="all">All</button><button
-                                class="tab-btn px-4 py-2 rounded-lg text-sm font-medium text-gray-500 hover:bg-gray-200"
+                                class="tab-btn px-3 md:px-4 py-2 rounded-lg text-xs md:text-sm font-medium text-gray-500 hover:bg-gray-200"
                                 data-grid="luzon">Luzon</button><button
-                                class="tab-btn px-4 py-2 rounded-lg text-sm font-medium text-gray-500 hover:bg-gray-200"
+                                class="tab-btn px-3 md:px-4 py-2 rounded-lg text-xs md:text-sm font-medium text-gray-500 hover:bg-gray-200"
                                 data-grid="visayas">Visayas</button><button
-                                class="tab-btn px-4 py-2 rounded-lg text-sm font-medium text-gray-500 hover:bg-gray-200"
+                                class="tab-btn px-3 md:px-4 py-2 rounded-lg text-xs md:text-sm font-medium text-gray-500 hover:bg-gray-200"
                                 data-grid="mindanao">Mindanao</button></div>
-                        <div class="flex items-center gap-2">
-                            <div class="relative"><input type="text" id="searchInput" placeholder="Search DU..."
-                                    class="w-full sm:w-48 bg-gray-100 rounded-lg py-2 pl-10 pr-4 focus:outline-none focus:ring-2 focus:ring-blue-500 border border-gray-300">
+                        <div class="flex items-center w-full md:w-auto">
+                            <div class="relative w-full md:w-64"><input type="text" id="searchInput" placeholder="Search DU..."
+                                    class="w-full bg-gray-100 rounded-lg py-2 pl-10 pr-4 focus:outline-none focus:ring-2 focus:ring-blue-500 border border-gray-300 text-sm">
                                 <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"><svg
                                         xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" fill="none"
                                         viewBox="0 0 24 24" stroke="currentColor">
@@ -344,10 +342,10 @@
                             </div>
                         </div>
                     </div>
-                    <div class="flex flex-col sm:flex-row justify-between items-center mb-4 gap-4">
-                        <div class="flex items-center gap-4">
+                    <div class="flex flex-col md:flex-row justify-between items-stretch md:items-center mb-4 gap-4">
+                        <div class="flex flex-row gap-2 w-full md:w-auto">
                             <select id="capacityFilter"
-                                class="bg-gray-100 rounded-lg p-2 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                class="flex-1 md:flex-none w-1/2 md:w-auto bg-gray-100 rounded-lg p-2 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 text-xs md:text-sm">
                                 <option value="0">Min Capacity (All)</option>
                                 <option value="100">100+ kWp</option>
                                 <option value="500">500+ kWp</option>
@@ -355,7 +353,7 @@
                                 <option value="5000">5000+ kWp</option>
                             </select>
                             <select id="usersFilter"
-                                class="bg-gray-100 rounded-lg p-2 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                class="flex-1 md:flex-none w-1/2 md:w-auto bg-gray-100 rounded-lg p-2 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 text-xs md:text-sm">
                                 <option value="0">Min Users (All)</option>
                                 <option value="50">50+ Users</option>
                                 <option value="100">100+ Users</option>
@@ -363,30 +361,28 @@
                                 <option value="500">500+ Users</option>
                             </select>
                         </div>
-                        <div class="flex flex-wrap items-center gap-2">
+                        <div class="flex flex-wrap gap-2 w-full md:w-auto justify-stretch md:justify-end">
                             <button id="compareBtn"
-                                class="px-4 py-2 bg-green-500 text-white rounded-lg text-sm font-medium hover:bg-green-600 disabled:bg-gray-300"
+                                class="flex-1 md:flex-none px-3 md:px-4 py-2 bg-green-500 text-white rounded-lg text-xs md:text-sm font-medium hover:bg-green-600 disabled:bg-gray-300"
                                 disabled>Compare Selected (0)</button>
                             <button id="resetBtn"
-                                class="px-4 py-2 bg-gray-600 text-white rounded-lg text-sm font-medium hover:bg-gray-700">Reset</button>
+                                class="flex-1 md:flex-none px-3 md:px-4 py-2 bg-gray-600 text-white rounded-lg text-xs md:text-sm font-medium hover:bg-gray-700">Reset</button>
                             <button id="exportCsvBtn"
-                                class="px-4 py-2 bg-blue-500 text-white rounded-lg text-sm font-medium hover:bg-blue-600">Export
-                                CSV</button>
+                                class="flex-1 md:flex-none px-3 md:px-4 py-2 bg-blue-500 text-white rounded-lg text-xs md:text-sm font-medium hover:bg-blue-600">Export</button>
                             <button id="printBtn"
-                                class="px-4 py-2 bg-red-500 text-white rounded-lg text-sm font-medium hover:bg-red-600">Print
-                                Report</button>
+                                class="flex-1 md:flex-none px-3 md:px-4 py-2 bg-red-500 text-white rounded-lg text-xs md:text-sm font-medium hover:bg-red-600">Print</button>
                         </div>
                     </div>
                 </div>
-                <div class="overflow-x-auto">
-                    <table class="w-full text-left">
+                <div class="overflow-x-auto custom-scrollbar">
+                    <table class="w-full text-left border-collapse">
                         <thead>
-                            <tr class="border-b border-gray-200">
-                                <th class="p-3 no-print w-12"><input type="checkbox" id="selectAllCheckbox"></th>
-                                <th class="p-3 cursor-pointer" data-sort="du">Distribution Utility (DU)</th>
-                                <th class="p-3 text-right cursor-pointer" data-sort="users">Qualified End-Users</th>
-                                <th class="p-3 text-right cursor-pointer" data-sort="capacity">Capacity (kWp)</th>
-                                <th class="p-3 text-right cursor-pointer" data-sort="avgCap">Avg. Cap/User (kWp)</th>
+                            <tr class="border-b border-gray-200 text-xs md:text-sm text-gray-600">
+                                <th class="p-2 md:p-3 no-print w-10"><input type="checkbox" id="selectAllCheckbox"></th>
+                                <th class="p-2 md:p-3 cursor-pointer font-semibold" data-sort="du">Distribution Utility (DU)</th>
+                                <th class="p-2 md:p-3 text-right cursor-pointer font-semibold" data-sort="users">Qualified End-Users</th>
+                                <th class="p-2 md:p-3 text-right cursor-pointer font-semibold" data-sort="capacity">Capacity (kWp)</th>
+                                <th class="p-2 md:p-3 text-right cursor-pointer font-semibold" data-sort="avgCap">Avg. Cap/User (kWp)</th>
                             </tr>
                         </thead>
                         <tbody id="du-table-body"></tbody>
@@ -457,8 +453,7 @@
             <div class="space-y-4 text-gray-600">
                 <p>This dashboard provides a visualization of Net-Metering data for on-grid Distribution Utilities in
                     the Philippines.</p>
-                <p><strong>Data Source:</strong> The data is based on the "Annual Implementation with COC as of 31
-                    December 2025" report.</p>
+                <p><strong>Data Source:</strong> The data is based on the "Net-Metering Implementation Nationwide As of 30 June 2026" report.</p>
                 <p><strong>Disclaimer:</strong> All geographical coordinates for Distribution Utilities are approximate
                     and intended for visualization purposes only. The yearly forecast is a simple linear projection and
                     should not be used for financial decisions.</p>
@@ -483,57 +478,74 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             // --- DATA ---
-            const annualData = [{ year: 2015, users: 200, capacity: 1109.33 }, { year: 2016, users: 536, capacity: 3598.19 }, { year: 2017, users: 663, capacity: 5298.71 }, { year: 2018, users: 844, capacity: 7652.04 }, { year: 2019, users: 1168, capacity: 9695.48 }, { year: 2020, users: 590, capacity: 4832.72 }, { year: 2021, users: 1715, capacity: 14552.62 }, { year: 2022, users: 1867, capacity: 16554.33 }, { year: 2023, users: 4125, capacity: 38157.85 }, { year: 2024, users: 3897, capacity: 39186.43 }, { year: 2025, users: 5619, capacity: 65366.28 }, { year: 2026, users: 1628, capacity: 16730.75 },];
-            const gridData = { luzon: { users: 18529, capacity: 164570.57 }, visayas: { users: 3329, capacity: 46065.74 }, mindanao: { users: 994, capacity: 12098.42 } };
+            const annualData = [
+                { year: 2015, users: 200, capacity: 1109.33 },
+                { year: 2016, users: 536, capacity: 3598.19 },
+                { year: 2017, users: 663, capacity: 5298.71 },
+                { year: 2018, users: 844, capacity: 7652.04 },
+                { year: 2019, users: 1168, capacity: 9695.48 },
+                { year: 2020, users: 590, capacity: 4832.72 },
+                { year: 2021, users: 1715, capacity: 14552.62 },
+                { year: 2022, users: 1867, capacity: 16554.33 },
+                { year: 2023, users: 4125, capacity: 38157.85 },
+                { year: 2024, users: 3897, capacity: 39186.43 },
+                { year: 2025, users: 5619, capacity: 65366.28 },
+                { year: 2026, users: 2460, capacity: 26543.84 }
+            ];
+            const gridData = {
+                luzon: { users: 19258, capacity: 172917.20 },
+                visayas: { users: 3393, capacity: 47187.66 },
+                mindanao: { users: 1033, capacity: 12442.96 }
+            };
             const duDataSource = {
                 luzon: [
-                    { du: "AEC", fullName: "Angeles Electric Corporation", users: 808, capacity: 9109.28, coords: [15.1433, 120.5833] },
+                    { du: "AEC", fullName: "Angeles Electric Corporation", users: 817, capacity: 9289.69, coords: [15.1433, 120.5833] },
                     { du: "AURELCO", fullName: "Aurora Electric Cooperative, Inc.", users: 5, capacity: 44.87, coords: [15.7597, 121.5592] },
-                    { du: "BATELEC I", fullName: "Batangas I Electric Cooperative, Inc.", users: 150, capacity: 1375.81, coords: [13.9306, 120.8283] },
-                    { du: "BATELEC II", fullName: "Batangas II Electric Cooperative, Inc.", users: 378, capacity: 3971.47, coords: [13.9432, 121.1627] },
+                    { du: "BATELEC I", fullName: "Batangas I Electric Cooperative, Inc.", users: 156, capacity: 1457.86, coords: [13.9306, 120.8283] },
+                    { du: "BATELEC II", fullName: "Batangas II Electric Cooperative, Inc.", users: 403, capacity: 4291.01, coords: [13.9432, 121.1627] },
                     { du: "BENECO", fullName: "Benguet Electric Cooperative, Inc.", users: 5, capacity: 104.15, coords: [16.4481, 120.5888] },
                     { du: "CAGELCO I", fullName: "Cagayan I Electric Cooperative, Inc.", users: 132, capacity: 1599.9, coords: [17.6525, 121.6888] },
-                    { du: "CAGELCO II", fullName: "Cagayan II Electric Cooperative, Inc.", users: 40, capacity: 344.73, coords: [18.3562, 121.6402] },
+                    { du: "CAGELCO II", fullName: "Cagayan II Electric Cooperative, Inc.", users: 44, capacity: 390.16, coords: [18.3562, 121.6402] },
                     { du: "CANORECO", fullName: "Camarines Norte Electric Cooperative, Inc.", users: 22, capacity: 209.58, coords: [14.1167, 122.95] },
                     { du: "CEDC", fullName: "Clark Electric Distribution Corporation", users: 8, capacity: 269.66, coords: [15.1764, 120.516] },
-                    { du: "CELCOR", fullName: "Cabanatuan Electric Corporation", users: 294, capacity: 2548.06, coords: [15.4855, 120.9701] },
+                    { du: "CELCOR", fullName: "Cabanatuan Electric Corporation", users: 295, capacity: 2554.16, coords: [15.4855, 120.9701] },
                     { du: "CENPELCO", fullName: "Central Pangasinan Electric Cooperative, Inc.", users: 104, capacity: 1183.12, coords: [15.9272, 120.3496] },
                     { du: "DECORP", fullName: "Dagupan Electric Corporation", users: 238, capacity: 2683.71, coords: [16.0433, 120.3333] },
                     { du: "FBPC", fullName: "First Bay Power Corporation", users: 1, capacity: 5.07 },
-                    { du: "FLECO", fullName: "First Laguna Electric Cooperative, Inc.", users: 26, capacity: 152.68, coords: [14.3005, 121.4593] },
+                    { du: "FLECO", fullName: "First Laguna Electric Cooperative, Inc.", users: 28, capacity: 161.21, coords: [14.3005, 121.4593] },
                     { du: "IEC", fullName: "Ibaan Electric Corporation", users: 8, capacity: 81.5, coords: [13.8189, 121.1319] },
                     { du: "INEC", fullName: "Ilocos Norte Electric Cooperative, Inc.", users: 339, capacity: 4477.21, coords: [18.1066, 120.6975] },
-                    { du: "ISECO", fullName: "Ilocos Sur Electric Cooperative, Inc.", users: 251, capacity: 2548.87, coords: [17.3804, 120.4431] },
+                    { du: "ISECO", fullName: "Ilocos Sur Electric Cooperative, Inc.", users: 261, capacity: 2638.14, coords: [17.3804, 120.4431] },
                     { du: "ISELCO I", fullName: "Isabela I Electric Cooperative, Inc.", users: 43, capacity: 625.75, coords: [16.8016, 121.71] },
-                    { du: "ISELCO II", fullName: "Isabela II Electric Cooperative, Inc.", users: 30, capacity: 514.9, coords: [17.1481, 121.8888] },
+                    { du: "ISELCO II", fullName: "Isabela II Electric Cooperative, Inc.", users: 37, capacity: 651.22, coords: [17.1481, 121.8888] },
                     { du: "LEZ", fullName: "Luzon Economic Zone", users: 3, capacity: 10.92 },
-                    { du: "LUECO", fullName: "La Union Electric Company, Inc.", users: 142, capacity: 1801.36, coords: [16.6167, 120.3167] },
-                    { du: "LUELCO", fullName: "La Union Electric Cooperative, Inc.", users: 167, capacity: 1916.73, coords: [16.3989, 120.3578] },
+                    { du: "LUECO", fullName: "La Union Electric Company, Inc.", users: 152, capacity: 1952.28, coords: [16.6167, 120.3167] },
+                    { du: "LUELCO", fullName: "La Union Electric Cooperative, Inc.", users: 169, capacity: 1932.56, coords: [16.3989, 120.3578] },
                     { du: "MALVEZ", fullName: "Malvez", users: 1, capacity: 14.18 },
-                    { du: "MERALCO", fullName: "Manila Electric Company", users: 11216, capacity: 84956.03, coords: [14.5995, 120.9842] },
-                    { du: "NEECO I", fullName: "Nueva Ecija I Electric Cooperative, Inc.", users: 223, capacity: 2117.52, coords: [15.2536, 120.8696] },
-                    { du: "NEECO II - A1", fullName: "Nueva Ecija II Electric Cooperative - Area 1", users: 94, capacity: 882.58, coords: [15.5898, 120.9167] },
+                    { du: "MERALCO", fullName: "Manila Electric Company", users: 11765, capacity: 90895.54, coords: [14.5995, 120.9842] },
+                    { du: "NEECO I", fullName: "Nueva Ecija I Electric Cooperative, Inc.", users: 226, capacity: 2168.13, coords: [15.2536, 120.8696] },
+                    { du: "NEECO II - A1", fullName: "Nueva Ecija II Electric Cooperative - Area 1", users: 104, capacity: 1080.75, coords: [15.5898, 120.9167] },
                     { du: "NEECO II - A2", fullName: "Nueva Ecija II Electric Cooperative - Area 2", users: 100, capacity: 1278.18, coords: [15.5393, 121.0903] },
                     { du: "NUVELCO", fullName: "Nueva Vizcaya Electric Cooperative, Inc.", users: 6, capacity: 42.87, coords: [16.3217, 121.1] },
                     { du: "OEDC", fullName: "Olongapo Electricity Distribution Company, Inc.", users: 142, capacity: 1153.02, coords: [14.8292, 120.2833] },
-                    { du: "PANELCO I", fullName: "Pangasinan I Electric Cooperative, Inc.", users: 54, capacity: 587.36, coords: [16.1952, 119.9242] },
+                    { du: "PANELCO I", fullName: "Pangasinan I Electric Cooperative, Inc.", users: 67, capacity: 695.72, coords: [16.1952, 119.9242] },
                     { du: "PANELCO III", fullName: "Pangasinan III Electric Cooperative, Inc.", users: 313, capacity: 3425.58, coords: [15.9752, 120.5694] },
                     { du: "PELCO I", fullName: "Pampanga I Electric Cooperative, Inc.", users: 741, capacity: 7290.47, coords: [15.0645, 120.7208] },
-                    { du: "PELCO II", fullName: "Pampanga II Electric Cooperative, Inc.", users: 352, capacity: 3892.64, coords: [14.9669, 120.638] },
+                    { du: "PELCO II", fullName: "Pampanga II Electric Cooperative, Inc.", users: 385, capacity: 4298.0, coords: [14.9669, 120.638] },
                     { du: "PELCO III", fullName: "Pampanga III Electric Cooperative, Inc.", users: 9, capacity: 161.83, coords: [14.9542, 120.7634] },
-                    { du: "PENELECO", fullName: "Peninsula Electric Cooperative, Inc.", users: 0, capacity: 0, coords: [14.6789, 120.5397] },
-                    { du: "PRESCO", fullName: "Pampanga Rural Electric Service Cooperative", users: 328, capacity: 3124.18, coords: [15.0645, 120.7208] },
+                    { du: "PENELCO", fullName: "Peninsula Electric Cooperative, Inc.", users: 438, capacity: 3867.46, coords: [14.6789, 120.5397] },
+                    { du: "PRESCO", fullName: "Pampanga Rural Electric Service Cooperative", users: 350, capacity: 3330.61, coords: [15.0645, 120.7208] },
                     { du: "QUEZELCO I", fullName: "Quezon I Electric Cooperative, Inc.", users: 12, capacity: 191.02, coords: [13.7744, 122.0911] },
                     { du: "QUEZELCO II", fullName: "Quezon II Electric Cooperative, Inc.", users: 5, capacity: 91.88, coords: [14.7431, 121.6508] },
-                    { du: "SAJELCO", fullName: "San Jose City Electric Light Company", users: 160, capacity: 1983.83, coords: [15.7833, 120.9833] },
+                    { du: "SAJELCO", fullName: "San Jose City Electric Light Company", users: 163, capacity: 2026.57, coords: [15.7833, 120.9833] },
                     { du: "SEZ", fullName: "Subic Enerzone Corporation", users: 18, capacity: 194.39, coords: [14.8214, 120.2858] },
                     { du: "SFELAPCO", fullName: "San Fernando Electric Light and Power Co.", users: 373, capacity: 4094.84, coords: [15.0292, 120.6922] },
-                    { du: "SORECO II", fullName: "Sorsogon II Electric Cooperative, Inc.", users: 1, capacity: 60.3, coords: [12.9667, 124.0] },
+                    { du: "SORECO II", fullName: "Sorsogon II Electric Cooperative, Inc.", users: 2, capacity: 68.3, coords: [12.9667, 124.0] },
                     { du: "TARELCO I", fullName: "Tarlac I Electric Cooperative, Inc.", users: 77, capacity: 568.82, coords: [15.6053, 120.5978] },
                     { du: "TARELCO II", fullName: "Tarlac II Electric Cooperative, Inc.", users: 61, capacity: 562.7, coords: [15.3283, 120.6581] },
-                    { du: "TEI", fullName: "Tarlac Electric, Inc.", users: 384, capacity: 5312.31, coords: [15.4833, 120.5833] },
+                    { du: "TEI", fullName: "Tarlac Electric, Inc.", users: 401, capacity: 5641.23, coords: [15.4833, 120.5833] },
                     { du: "ZAMECO I", fullName: "Zambales I Electric Cooperative, Inc.", users: 193, capacity: 2747.16, coords: [15.4419, 119.9481] },
-                    { du: "ZAMECO II", fullName: "Zambales II Electric Cooperative, Inc.", users: 34, capacity: 390.13, coords: [14.9317, 120.1917] },
+                    { du: "ZAMECO II", fullName: "Zambales II Electric Cooperative, Inc.", users: 36, capacity: 414.28, coords: [14.9317, 120.1917] },
                     { du: "ABRECO", fullName: "Abra Electric Cooperative, Inc.", users: 0, capacity: 0, coords: [17.6053, 120.6186] },
                     { du: "ALECO", fullName: "Albay Electric Cooperative, Inc.", users: 0, capacity: 0, coords: [13.1394, 123.7431] },
                     { du: "CASURECO I", fullName: "Camarines Sur I Electric Cooperative, Inc.", users: 0, capacity: 0, coords: [13.6931, 122.9567] },
@@ -549,59 +561,59 @@
                 visayas: [
                     { du: "AKELCO", fullName: "Aklan Electric Cooperative, Inc.", users: 53, capacity: 1063.73, coords: [11.7011, 122.3333] },
                     { du: "ANTECO", fullName: "Antique Electric Cooperative, Inc.", users: 28, capacity: 273.62, coords: [10.75, 121.9667] },
-                    { du: "BLCI", fullName: "Bohol Light Company, Inc.", users: 22, capacity: 283.13, coords: [9.65, 123.85] },
+                    { du: "BLCI", fullName: "Bohol Light Company, Inc.", users: 23, capacity: 289.23, coords: [9.65, 123.85] },
                     { du: "BOHECO I", fullName: "Bohol I Electric Cooperative, Inc.", users: 108, capacity: 1150.55, coords: [9.9575, 123.9589] },
-                    { du: "BOHECO II", fullName: "Bohol II Electric Cooperative, Inc.", users: 78, capacity: 1380.19, coords: [9.6547, 124.3683] },
-                    { du: "CEBECO I", fullName: "Cebu I Electric Cooperative, Inc.", users: 83, capacity: 1004.13, coords: [9.9958, 123.4475] },
+                    { du: "BOHECO II", fullName: "Bohol II Electric Cooperative, Inc.", users: 79, capacity: 1400.84, coords: [9.6547, 124.3683] },
+                    { du: "CEBECO I", fullName: "Cebu I Electric Cooperative, Inc.", users: 91, capacity: 1133.53, coords: [9.9958, 123.4475] },
                     { du: "CEBECO II", fullName: "Cebu II Electric Cooperative, Inc.", users: 8, capacity: 78.72, coords: [11.0544, 124.0047] },
                     { du: "CEBECO III", fullName: "Cebu III Electric Cooperative, Inc.", users: 22, capacity: 405.16, coords: [10.3808, 123.645] },
                     { du: "DORELCO", fullName: "Don Orestes Romualdez Electric Cooperative", users: 2, capacity: 4.32, coords: [11.0569, 125.0347] },
-                    { du: "GUIMELCO", fullName: "Guimaras Electric Cooperative, Inc.", users: 21, capacity: 172.25, coords: [10.5667, 122.6167] },
+                    { du: "ESAMELCO", fullName: "Eastern Samar Electric Cooperative, Inc.", users: 2, capacity: 35.26, coords: [11.6083, 125.4319] },
+                    { du: "GUIMELCO", fullName: "Guimaras Electric Cooperative, Inc.", users: 22, capacity: 246.65, coords: [10.5667, 122.6167] },
                     { du: "ILECO I", fullName: "Iloilo I Electric Cooperative, Inc.", users: 117, capacity: 897.46, coords: [10.6558, 122.3789] },
                     { du: "ILECO II", fullName: "Iloilo II Electric Cooperative, Inc.", users: 37, capacity: 224.94, coords: [10.9322, 122.6289] },
                     { du: "ILECO III", fullName: "Iloilo III Electric Cooperative, Inc.", users: 36, capacity: 543.97, coords: [11.2333, 123.0167] },
-                    { du: "LEYECO II", fullName: "Leyte II Electric Cooperative, Inc.", users: 34, capacity: 507.14, coords: [11.2417, 125.0] },
-                    { du: "LEYECO IV", fullName: "Leyte IV Electric Cooperative, Inc.", users: 23, capacity: 250.96, coords: [10.3753, 124.75] },
-                    { du: "LEYECO V", fullName: "Leyte V Electric Cooperative, Inc.", users: 84, capacity: 1421.79, coords: [11.0167, 124.6] },
-                    { du: "MECO", fullName: "Mactan Electric Company, Inc.", users: 65, capacity: 540.25, coords: [10.3167, 123.9667] },
+                    { du: "LEYECO II", fullName: "Leyte II Electric Cooperative, Inc.", users: 36, capacity: 552.53, coords: [11.2417, 125.0] },
+                    { du: "LEYECO IV", fullName: "Leyte IV Electric Cooperative, Inc.", users: 25, capacity: 276.16, coords: [10.3753, 124.75] },
+                    { du: "LEYECO V", fullName: "Leyte V Electric Cooperative, Inc.", users: 86, capacity: 1454.35, coords: [11.0167, 124.6] },
+                    { du: "MECO", fullName: "Mactan Electric Company, Inc.", users: 70, capacity: 582.37, coords: [10.3167, 123.9667] },
                     { du: "MEPC", fullName: "Mactan Electric Company, Inc.", users: 178, capacity: 2025.78 },
-                    { du: "NEPC", fullName: "Negros Electric Power Corporation", users: 1331, capacity: 21834.69, coords: [10.6667, 122.95] },
+                    { du: "NEPC", fullName: "Negros Electric Power Corporation", users: 1352, capacity: 22021.84, coords: [10.6667, 122.95] },
                     { du: "NOCECO", fullName: "Negros Occidental Electric Cooperative", users: 4, capacity: 20.79, coords: [10.0167, 122.8667] },
-                    { du: "NORECO I", fullName: "Negros Oriental I Electric Cooperative", users: 9, capacity: 185.85, coords: [9.7369, 123.1361] },
+                    { du: "NORECO I", fullName: "Negros Oriental I Electric Cooperative", users: 11, capacity: 223.75, coords: [9.7369, 123.1361] },
                     { du: "NORECO II", fullName: "Negros Oriental II Electric Cooperative", users: 319, capacity: 3035.66, coords: [9.3167, 123.3] },
-                    { du: "NORSAMELCO", fullName: "Northern Samar Electric Cooperative", users: 7, capacity: 103.66, coords: [12.5539, 124.5511] },
+                    { du: "NORSAMELCO", fullName: "Northern Samar Electric Cooperative", users: 12, capacity: 191.99, coords: [12.5539, 124.5511] },
                     { du: "SAMELCO I", fullName: "Samar I Electric Cooperative, Inc.", users: 9, capacity: 72.3, coords: [12.0672, 124.5947] },
                     { du: "SAMELCO II", fullName: "Samar II Electric Cooperative, Inc.", users: 19, capacity: 653.04, coords: [11.8028, 125.0561] },
                     { du: "SOLECO", fullName: "Southern Leyte Electric Cooperative", users: 21, capacity: 141.72, coords: [10.1344, 124.8431] },
-                    { du: "VECO", fullName: "Visayan Electric Company", users: 611, capacity: 7789.97, coords: [10.3157, 123.8854] },
+                    { du: "VECO", fullName: "Visayan Electric Company", users: 623, capacity: 8187.43, coords: [10.3157, 123.8854] },
                     { du: "BEZ", fullName: "Bohol Economic Zone", users: 0, capacity: 0 },
                     { du: "BILECO", fullName: "Biliran Electric Cooperative, Inc.", users: 0, capacity: 0, coords: [11.5622, 124.3989] },
                     { du: "CAPELCO", fullName: "Capiz Electric Cooperative, Inc.", users: 0, capacity: 0, coords: [11.4586, 122.7594] },
-                    { du: "ESAMELCO", fullName: "Eastern Samar Electric Cooperative, Inc.", users: 0, capacity: 0, coords: [11.6083, 125.4319] },
                     { du: "LEYECO III", fullName: "Leyte III Electric Cooperative, Inc.", users: 0, capacity: 0, coords: [11.2386, 124.7369] },
                     { du: "MEZ", fullName: "Mactan Economic Zone", users: 0, capacity: 0 },
                     { du: "NONECO", fullName: "Northern Negros Electric Cooperative, Inc.", users: 0, capacity: 0, coords: [10.9575, 123.0189] }
                 ],
                 mindanao: [
-                    { du: "ANECO", fullName: "Agusan del Norte Electric Cooperative", users: 25, capacity: 422.89, coords: [8.95, 125.5333] },
-                    { du: "BUSECO II", fullName: "Bukidnon Second Electric Cooperative", users: 0, capacity: 0, coords: [8.3681, 124.8631] },
+                    { du: "ANECO", fullName: "Agusan del Norte Electric Cooperative", users: 27, capacity: 435.63, coords: [8.95, 125.5333] },
+                    { du: "BUSECO", fullName: "Bukidnon Second Electric Cooperative", users: 1, capacity: 5.4, coords: [8.3681, 124.8631] },
                     { du: "CEPALCO", fullName: "Cagayan Electric Power & Light Co.", users: 34, capacity: 509.55, coords: [8.4543, 124.6319] },
                     { du: "CLPC", fullName: "Cotabato Light and Power Company", users: 7, capacity: 350.37, coords: [7.2214, 124.2494] },
                     { du: "COTELCO", fullName: "Cotabato Electric Cooperative, Inc.", users: 1, capacity: 6.9, coords: [7.0864, 124.8789] },
-                    { du: "DASURECO", fullName: "Davao Del Sur Electric Cooperative", users: 15, capacity: 117.79, coords: [6.8333, 125.35] },
-                    { du: "DLPC", fullName: "Davao Light and Power Company", users: 665, capacity: 6981.58, coords: [7.1907, 125.4553] },
+                    { du: "DASURECO", fullName: "Davao Del Sur Electric Cooperative", users: 17, capacity: 129.89, coords: [6.8333, 125.35] },
+                    { du: "DLPC", fullName: "Davao Light and Power Company", users: 693, capacity: 7220.75, coords: [7.1907, 125.4553] },
                     { du: "DORECO", fullName: "Davao Oriental Electric Cooperative", users: 7, capacity: 149.9, coords: [6.9583, 126.2167] },
                     { du: "FIBECO", fullName: "First Bukidnon Electric Cooperative", users: 5, capacity: 136.52, coords: [7.7619, 125.0044] },
                     { du: "ILPI", fullName: "Iligan Light & Power, Inc.", users: 55, capacity: 564.31, coords: [8.2333, 124.25] },
                     { du: "LANECO", fullName: "Lanao del Norte Electric Cooperative", users: 5, capacity: 83.88, coords: [8.0556, 123.7903] },
-                    { du: "MOELCI II", fullName: "Misamis Occidental II Electric Cooperative", users: 9, capacity: 145.75, coords: [8.2439, 123.8386] },
-                    { du: "MORESCO I", fullName: "Misamis Oriental I Rural Electric Service", users: 14, capacity: 78.32, coords: [8.6183, 124.4608] },
+                    { du: "MOELCI II", fullName: "Misamis Occidental II Electric Cooperative", users: 11, capacity: 182.58, coords: [8.2439, 123.8386] },
+                    { du: "MORESCO I", fullName: "Misamis Oriental I Rural Electric Service", users: 17, capacity: 105.67, coords: [8.6183, 124.4608] },
                     { du: "NORDECO", fullName: "Northern Davao Electric Cooperative", users: 2, capacity: 13.17, coords: [7.7011, 126.0847] },
                     { du: "SIARELCO", fullName: "Siargao Electric Cooperative, Inc.", users: 2, capacity: 40.7, coords: [9.7592, 126.0522] },
                     { du: "SOCOTECO I", fullName: "South Cotabato I Electric Cooperative", users: 79, capacity: 1068.38, coords: [6.5, 124.85] },
                     { du: "SOCOTECO II", fullName: "South Cotabato II Electric Cooperative", users: 26, capacity: 363.54, coords: [6.1194, 125.1719] },
                     { du: "SUKELCO", fullName: "Sultan Kudarat Electric Cooperative", users: 3, capacity: 13.44, coords: [6.6875, 124.6417] },
-                    { du: "SURSECO I", fullName: "Surigao del Sur I Electric Cooperative", users: 6, capacity: 77.89, coords: [8.1883, 126.3267] },
+                    { du: "SURSECO I", fullName: "Surigao del Sur I Electric Cooperative", users: 8, capacity: 94.24, coords: [8.1883, 126.3267] },
                     { du: "SURSECO II", fullName: "Surigao Del Sur II Electric Cooperative, Inc.", users: 4, capacity: 57.4, coords: [9.0767, 126.1953] },
                     { du: "ZAMCELCO", fullName: "Zamboanga City Electric Cooperative", users: 20, capacity: 671.36, coords: [6.9214, 122.079] },
                     { du: "ZAMSURECO I", fullName: "Zamboanga del Sur I Electric Cooperative", users: 2, capacity: 10.0, coords: [7.8286, 123.4414] },
@@ -741,12 +753,12 @@
                     .sort((a, b) => a.du.localeCompare(b.du));
 
                 zeroQETableBody.innerHTML = zeroQEData.map(item => `
-                    <tr class="border-b border-gray-200">
-                        <td class="p-3">
+                    <tr class="border-b border-gray-200 text-xs md:text-sm">
+                        <td class="p-2 md:p-3">
                             <div class="font-medium text-gray-800">${item.fullName || 'N/A'}</div>
-                            <div class="text-xs text-gray-500">${item.du}</div>
+                            <div class="text-[10px] md:text-xs text-gray-500">${item.du}</div>
                         </td>
-                        <td class="p-3">${item.grid}</td>
+                        <td class="p-2 md:p-3">${item.grid}</td>
                     </tr>
                 `).join('');
             };
@@ -764,7 +776,7 @@
                 let data = duData[currentGrid].filter(item => (item.du.toLowerCase().includes(searchTerm) || (item.fullName && item.fullName.toLowerCase().includes(searchTerm))) && item.capacity >= minCap && item.users >= minUsers && item.users > 0);
                 data.sort((a, b) => { const valA = a[sortConfig.key]; const valB = b[sortConfig.key]; const direction = sortConfig.direction === 'asc' ? 1 : -1; if (typeof valA === 'string') return valA.localeCompare(valB) * direction; return (valA - valB) * direction; });
                 currentRenderedData = data;
-                tableBody.innerHTML = data.map(item => `<tr class="border-b border-gray-200 hover:bg-gray-100 transition-colors"><td class="p-3 no-print"><input type="checkbox" class="du-checkbox" data-du-name="${item.du}" ${selectedDUs.has(item.du) ? 'checked' : ''}></td><td class="p-3 cursor-pointer view-details" data-du-name="${item.du}"><div class="font-medium text-gray-800">${item.fullName || 'N/A'}</div><div class="text-xs text-gray-500">${item.du}</div></td><td class="p-3 text-right">${item.users.toLocaleString()}</td><td class="p-3 text-right">${formatNumber(item.capacity)}</td><td class="p-3 text-right">${formatNumber(item.avgCap)}</td></tr>`).join('');
+                tableBody.innerHTML = data.map(item => `<tr class="border-b border-gray-200 hover:bg-gray-100 transition-colors text-xs md:text-sm"><td class="p-2 md:p-3 no-print"><input type="checkbox" class="du-checkbox" data-du-name="${item.du}" ${selectedDUs.has(item.du) ? 'checked' : ''}></td><td class="p-2 md:p-3 cursor-pointer view-details" data-du-name="${item.du}"><div class="font-medium text-gray-800">${item.fullName || 'N/A'}</div><div class="text-[10px] md:text-xs text-gray-500">${item.du}</div></td><td class="p-2 md:p-3 text-right">${item.users.toLocaleString()}</td><td class="p-2 md:p-3 text-right">${formatNumber(item.capacity)}</td><td class="p-2 md:p-3 text-right">${formatNumber(item.avgCap)}</td></tr>`).join('');
 
                 updateKpiCards(duData[currentGrid]);
                 renderTopLists(data);
