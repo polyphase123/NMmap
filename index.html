@@ -5,7 +5,10 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#2563eb">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>Net-Metering Dashboard</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -279,7 +282,7 @@
                     class="lg:col-span-2 lg:row-span-3 bg-white p-6 rounded-2xl shadow-lg border border-gray-200 flex flex-col">
                     <h2 class="text-xl font-semibold mb-4 text-gray-900 flex-shrink-0">Distribution Utility Locations
                     </h2>
-                    <div id="map" class="flex-grow rounded-lg min-h-[600px]"></div>
+                    <div id="map" class="flex-grow rounded-lg min-h-[400px] lg:min-h-[600px] w-full"></div>
                 </div>
 
                 <!-- Top DUs Card -->
@@ -345,9 +348,9 @@
                         </div>
                     </div>
                     <div class="flex flex-col sm:flex-row justify-between items-center mb-4 gap-4">
-                        <div class="flex items-center gap-4">
+                        <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto">
                             <select id="capacityFilter"
-                                class="bg-gray-100 rounded-lg p-2 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                class="bg-gray-100 rounded-lg p-2 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 w-full sm:w-auto">
                                 <option value="0">Min Capacity (All)</option>
                                 <option value="100">100+ kWp</option>
                                 <option value="500">500+ kWp</option>
@@ -355,7 +358,7 @@
                                 <option value="5000">5000+ kWp</option>
                             </select>
                             <select id="usersFilter"
-                                class="bg-gray-100 rounded-lg p-2 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                class="bg-gray-100 rounded-lg p-2 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 w-full sm:w-auto">
                                 <option value="0">Min Users (All)</option>
                                 <option value="50">50+ Users</option>
                                 <option value="100">100+ Users</option>
@@ -363,7 +366,7 @@
                                 <option value="500">500+ Users</option>
                             </select>
                         </div>
-                        <div class="flex flex-wrap items-center gap-2">
+                        <div class="flex flex-wrap items-center justify-center sm:justify-end gap-2 w-full sm:w-auto">
                             <button id="compareBtn"
                                 class="px-4 py-2 bg-green-500 text-white rounded-lg text-sm font-medium hover:bg-green-600 disabled:bg-gray-300"
                                 disabled>Compare Selected (0)</button>
